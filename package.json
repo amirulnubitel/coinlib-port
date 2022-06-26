@@ -2,17 +2,40 @@
   "name": "coinlib-port",
   "version": "1.0.0",
   "description": "\"# coinlib-port\"",
+  "main": "build/lib-base/index.js",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc --build ./tsconfig.project.json",
-    "run": "npm run build && pm2 restart build/index.js --name \"Snow\" --time && pm2 save",
-    "clean": "npm run clean -ws",
-    "dev": "npm-run-all build --parallel dev:backend dev:invoice-client",
-    "dev:backend": "cd packages/backend && npm run dev",
-    "dev:invoice-client": "cd packages/invoice-client && npm run dev"
+    "build": "tsc",
+    "lint": "eslint --fix",
+    "prettier-format": "prettier --config prettier.config.js 'src/**/*.ts' --write"
   },
   "author": "dilan-dio4",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "bip174": "^2.1.0",
+    "bip32": "^3.0.1",
+    "bip39": "^3.0.4",
+    "bitcoinjs-lib": "^6.0.1",
+    "bitcoinjs-lib-bigint": "^0.0.1-security",
+    "blockbook-client": "^0.7.5",
+    "bs58": "^5.0.0",
+    "ecpair": "^2.0.1",
+    "fp-ts": "^1.19.5",
+    "io-ts": "^1.10.4",
+    "lodash": "^4.17.21",
+    "promise-retry": "^2.0.1",
+    "request-promise-native": "^1.0.9",
+    "tiny-secp256k1": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "bs58check": "^2.1.2",
+    "eslint": "^8.18.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
 }
