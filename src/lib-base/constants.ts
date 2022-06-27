@@ -1,5 +1,5 @@
 // import { TronPaymentsFactory } from '../coinlib-tron'
-// import { RipplePaymentsFactory } from '../coinlib-ripple'
+import { RipplePaymentsFactory } from '../lib-ripple'
 // import { StellarPaymentsFactory } from '../coinlib-stellar'
 // import { BitcoinPaymentsFactory } from '../coinlib-bitcoin'
 // import { EthereumPaymentsFactory } from '../coinlib-ethereum'
@@ -11,7 +11,7 @@ import { keysOf } from './utils'
 // TODO ^
 export const PAYMENTS_FACTORIES = {
   // TRX: new TronPaymentsFactory(),
-  // XRP: new RipplePaymentsFactory(),
+  XRP: new RipplePaymentsFactory(),
   // XLM: new StellarPaymentsFactory(),
   // BTC: new BitcoinPaymentsFactory(),
   // ETH: new EthereumPaymentsFactory(),

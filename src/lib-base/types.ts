@@ -6,11 +6,7 @@ import { NetworkTypeT } from '../lib-common'
 //   BaseTronPaymentsConfig,
 //   TronPaymentsUtils
 // } from '@bitaccess/coinlib-tron';
-// import {
-//   RipplePaymentsConfig,
-//   BaseRipplePaymentsConfig,
-//   RipplePaymentsUtils
-// } from '@bitaccess/coinlib-ripple';
+import { RipplePaymentsConfig, BaseRipplePaymentsConfig, RipplePaymentsUtils } from '../lib-ripple'
 // import {
 //   StellarPaymentsConfig,
 //   BaseStellarPaymentsConfig,
@@ -42,7 +38,7 @@ import { LitecoinPaymentsConfig, BaseLitecoinPaymentsConfig, LitecoinPaymentsUti
 
 export type CoinPaymentsUtilsClasses = {
   // TRX: TronPaymentsUtils;
-  // XRP: RipplePaymentsUtils;
+  XRP: RipplePaymentsUtils
   // XLM: StellarPaymentsUtils;
   // BTC: BitcoinPaymentsUtils;
   // ETH: EthereumPaymentsUtils;
@@ -53,7 +49,7 @@ export type CoinPaymentsUtilsClasses = {
 
 export const basePaymentsConfigCodecs = {
   // TRX: BaseTronPaymentsConfig,
-  // XRP: BaseRipplePaymentsConfig,
+  XRP: BaseRipplePaymentsConfig,
   // XLM: BaseStellarPaymentsConfig,
   // BTC: BaseBitcoinPaymentsConfig,
   // ETH: BaseEthereumPaymentsConfig,
@@ -67,7 +63,7 @@ export type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>
 
 export const paymentsConfigCodecs = {
   // TRX: TronPaymentsConfig,
-  // XRP: RipplePaymentsConfig,
+  XRP: RipplePaymentsConfig,
   // XLM: StellarPaymentsConfig,
   // BTC: BitcoinPaymentsConfig,
   // ETH: EthereumPaymentsConfig,

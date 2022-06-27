@@ -15,6 +15,7 @@
   "author": "dilan-dio4",
   "license": "ISC",
   "dependencies": {
+    "base-x": "^4.0.0",
     "bignumber.js": "^9.0.0",
     "bip174": "^2.1.0",
     "bip32": "^3.0.1",
@@ -29,6 +30,7 @@
     "lodash": "^4.17.21",
     "promise-retry": "^2.0.1",
     "request-promise-native": "^1.0.9",
+    "ripple-lib": "^1.10.1",
     "tiny-secp256k1": "^2.2.1"
   },
   "devDependencies": {
