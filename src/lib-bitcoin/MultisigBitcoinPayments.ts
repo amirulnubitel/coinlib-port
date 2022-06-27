@@ -13,7 +13,7 @@ import { KeyPairBitcoinPayments } from './KeyPairBitcoinPayments'
 import * as bitcoin from 'bitcoinjs-lib'
 import { CreateTransactionOptions, ResolveablePayport, PayportOutput } from '../lib-common'
 import { getMultisigPaymentScript } from './helpers'
-import { Numeric } from '@faast/ts-common'
+import { Numeric } from '../ts-common'
 import { DEFAULT_MULTISIG_ADDRESS_TYPE } from './constants'
 import { createMultisigData, preCombinePartiallySignedTransactions, updateSignedMultisigTx } from './bitcoinish'
 export class MultisigBitcoinPayments extends BaseBitcoinPayments<MultisigBitcoinPaymentsConfig> {

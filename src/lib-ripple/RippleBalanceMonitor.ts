@@ -9,7 +9,7 @@ import {
 } from '../lib-common'
 import { FormattedPaymentTransaction, FormattedTransactionType } from 'ripple-lib/dist/npm/transaction/types'
 import { TransactionsOptions } from 'ripple-lib/dist/npm/ledger/transactions'
-import { isUndefined, isNumber, isString, Numeric } from '@faast/ts-common'
+import { isUndefined, isNumber, isString, Numeric } from '../ts-common'
 
 import { padLeft } from './utils'
 import { RippleBalanceMonitorConfig } from './types'
