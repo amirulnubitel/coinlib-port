@@ -1,6 +1,6 @@
 import Bottleneck from "bottleneck";
 
-const RATE_LIMIT = 1500;
+const RATE_LIMIT = 2500;
 
 const limiter = new Bottleneck({
     minTime: RATE_LIMIT,
