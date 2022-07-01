@@ -1,4 +1,4 @@
-import { TronPaymentsFactory } from '../lib-tron'
+// import { TronPaymentsFactory } from '../lib-tron'
 import { RipplePaymentsFactory } from '../lib-ripple'
 // import { StellarPaymentsFactory } from '../coinlib-stellar'
 // import { BitcoinPaymentsFactory } from '../coinlib-bitcoin'
@@ -10,7 +10,7 @@ import { LitecoinPaymentsFactory } from '../lib-litecoin'
 import { keysOf } from './utils'
 // TODO ^
 export const PAYMENTS_FACTORIES = {
-  TRX: new TronPaymentsFactory(),
+  // TRX: new TronPaymentsFactory(),
   XRP: new RipplePaymentsFactory(),
   // XLM: new StellarPaymentsFactory(),
   // BTC: new BitcoinPaymentsFactory(),

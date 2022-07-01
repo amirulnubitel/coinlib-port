@@ -1,11 +1,11 @@
 import * as t from 'io-ts'
 import { extendCodec, Logger } from '../ts-common'
 import { NetworkTypeT } from '../lib-common'
-import {
-  TronPaymentsConfig,
-  BaseTronPaymentsConfig,
-  TronPaymentsUtils
-} from '../lib-tron';
+// import {
+//   TronPaymentsConfig,
+//   BaseTronPaymentsConfig,
+//   TronPaymentsUtils
+// } from '../lib-tron';
 import { RipplePaymentsConfig, BaseRipplePaymentsConfig, RipplePaymentsUtils } from '../lib-ripple'
 // import {
 //   StellarPaymentsConfig,
@@ -37,7 +37,7 @@ import { LitecoinPaymentsConfig, BaseLitecoinPaymentsConfig, LitecoinPaymentsUti
 // TODO ^
 
 export type CoinPaymentsUtilsClasses = {
-  TRX: TronPaymentsUtils;
+  // TRX: TronPaymentsUtils;
   XRP: RipplePaymentsUtils
   // XLM: StellarPaymentsUtils;
   // BTC: BitcoinPaymentsUtils;
@@ -48,7 +48,7 @@ export type CoinPaymentsUtilsClasses = {
 }
 
 export const basePaymentsConfigCodecs = {
-  TRX: BaseTronPaymentsConfig,
+  // TRX: BaseTronPaymentsConfig,
   XRP: BaseRipplePaymentsConfig,
   // XLM: BaseStellarPaymentsConfig,
   // BTC: BaseBitcoinPaymentsConfig,
@@ -62,7 +62,7 @@ export const CoinPaymentsBaseConfigs = t.type(basePaymentsConfigCodecs, 'CoinPay
 export type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>
 
 export const paymentsConfigCodecs = {
-  TRX: TronPaymentsConfig,
+  // TRX: TronPaymentsConfig,
   XRP: RipplePaymentsConfig,
   // XLM: StellarPaymentsConfig,
   // BTC: BitcoinPaymentsConfig,
