@@ -6,6 +6,7 @@ import {
   RetrieveBalanceActivitiesResult,
   isMatchingError,
   BigNumber,
+  limiter
 } from '../lib-common'
 import { FormattedPaymentTransaction, FormattedTransactionType } from 'ripple-lib/dist/npm/transaction/types'
 import { TransactionsOptions } from 'ripple-lib/dist/npm/ledger/transactions'
@@ -27,7 +28,7 @@ export class RippleBalanceMonitor extends RippleConnected implements BalanceMoni
       assertValidAddress(address)
     }
     try {
-      const res = await this._retryDced(() => this.api.request('subscribe', { accounts: addresses }))
+      const res = await limiter.schedule(() => this.api.request('subscribe', { accounts: addresses }))
       if (res.status === 'success') {
         this.logger.log('Ripple successfully subscribed', res)
       } else {
@@ -52,7 +53,7 @@ export class RippleBalanceMonitor extends RippleConnected implements BalanceMoni
   }
 
   private async resolveFromToLedgers(options: GetBalanceActivityOptions): Promise<{ from: BigNumber; to: BigNumber }> {
-    const serverInfo = await this._retryDced(() => this.api.getServerInfo())
+    const serverInfo = await limiter.schedule(() => this.api.getServerInfo())
     const completeLedgers = serverInfo.completeLedgers.split('-')
     let fromLedgerVersion = new BigNumber(completeLedgers[0])
     let toLedgerVersion = new BigNumber(completeLedgers[1])
@@ -111,7 +112,7 @@ export class RippleBalanceMonitor extends RippleConnected implements BalanceMoni
         getTransactionOptions.maxLedgerVersion = to.toNumber()
       }
       try {
-        transactions = await this._retryDced(() => this.api.getTransactions(address, getTransactionOptions))
+        transactions = await limiter.schedule(() => this.api.getTransactions(address, getTransactionOptions))
       } catch (e) {
         if (isMatchingError(e, NOT_FOUND_ERRORS)) {
           this.logger.debug(`Address ${address} not found`)
@@ -151,7 +152,7 @@ export class RippleBalanceMonitor extends RippleConnected implements BalanceMoni
     const confirmationNumber = tx.outcome.ledgerVersion
     const primarySequence = padLeft(String(tx.outcome.ledgerVersion), 12, '0')
     const secondarySequence = padLeft(String(tx.outcome.indexInLedger), 8, '0')
-    const ledger = await this._retryDced(() => this.api.getLedger({ ledgerVersion: confirmationNumber }))
+    const ledger = await limiter.schedule(() => this.api.getLedger({ ledgerVersion: confirmationNumber }))
     const balanceChange = (tx.outcome.balanceChanges[address] || []).find(({ currency }) => currency === 'XRP')
     if (!balanceChange) {
       this.logger.log(

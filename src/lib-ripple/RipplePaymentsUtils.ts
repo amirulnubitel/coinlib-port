@@ -8,6 +8,7 @@ import {
   TransactionStatus,
   BlockInfo,
   BigNumber,
+  limiter
 } from '../lib-common'
 import { isNil, assertType, Numeric, isMatchingError, isUndefined, isString } from '../ts-common'
 
@@ -52,7 +53,7 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
     }
     let requireExtraId = false
     try {
-      const settings = await this._retryDced(() => this.api.getSettings(address))
+      const settings = await limiter.schedule(() => this.api.getSettings(address))
       requireExtraId = settings.requireDestinationTag || false
     } catch (e) {
       this.logger.log(`getPayportValidationMessage failed to retrieve settings for ${address} - ${e.message}`)
@@ -102,7 +103,7 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
   isValidXpub = isValidXpub
 
   async getFeeRateRecommendation(level: AutoFeeLevels): Promise<FeeRate> {
-    const feeMain = await this._retryDced(() => this.api.getFee(FEE_LEVEL_CUSHIONS[level]))
+    const feeMain = await limiter.schedule(() => this.api.getFee(FEE_LEVEL_CUSHIONS[level]))
     return {
       feeRate: feeMain,
       feeRateType: FeeRateType.Main,
@@ -110,7 +111,7 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
   }
 
   async getCurrentBlockNumber() {
-    return this._retryDced(() => this.api.getLedgerVersion())
+    return limiter.schedule(() => this.api.getLedgerVersion())
   }
 
   async getAddressUtxos() {
@@ -124,7 +125,7 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
   async getAddressBalance(address: string) {
     let balances
     try {
-      balances = await this._retryDced(() => this.api.getBalances(address))
+      balances = await limiter.schedule(() => this.api.getBalances(address))
     } catch (e) {
       if (isMatchingError(e, NOT_FOUND_ERRORS)) {
         this.logger.debug(`Address ${address} not found`)
@@ -155,14 +156,14 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
   }
 
   async getAddressNextSequenceNumber(address: string): Promise<string> {
-    const accountInfo = await this._retryDced(() => this.api.getAccountInfo(address))
+    const accountInfo = await limiter.schedule(() => this.api.getAccountInfo(address))
     return new BigNumber(accountInfo.sequence).toString()
   }
 
   async getTransactionInfo(txId: string): Promise<RippleTransactionInfo> {
     let tx
     try {
-      tx = await this._retryDced(() => this.api.getTransaction(txId))
+      tx = await limiter.schedule(() => this.api.getTransaction(txId))
     } catch (e) {
       const eString = e.toString()
       if (NOT_FOUND_ERRORS.some((type) => eString.includes(type))) {
@@ -186,7 +187,7 @@ export class RipplePaymentsUtils extends RippleConnected implements PaymentsUtil
     const status = isSuccessful || isCostDestroyed ? TransactionStatus.Confirmed : TransactionStatus.Failed
     const isExecuted = isSuccessful
     const confirmationNumber = outcome.ledgerVersion
-    const ledger = await this._retryDced(() => this.api.getLedger({ ledgerVersion: confirmationNumber }))
+    const ledger = await limiter.schedule(() => this.api.getLedger({ ledgerVersion: confirmationNumber }))
     const currentLedgerVersion = await this.getCurrentBlockNumber()
     const confirmationId = ledger.ledgerHash
     const confirmationTimestamp = outcome.timestamp ? new Date(outcome.timestamp) : null

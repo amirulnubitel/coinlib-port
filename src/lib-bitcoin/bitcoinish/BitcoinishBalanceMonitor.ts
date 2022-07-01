@@ -9,6 +9,7 @@ import {
   FilterBlockAddressesCallback,
   BlockInfo,
   BigNumber,
+  limiter
 } from '../../lib-common'
 import { EventEmitter } from 'events'
 import {
@@ -125,7 +126,7 @@ export abstract class BitcoinishBalanceMonitor extends BlockbookConnected implem
       for (const address of relevantAddresses) {
         const txs = addressTransactions[address] ?? []
         for (const { txid } of txs) {
-          const tx = (hardTxQueries[txid] ??= await this._retryDced(() => this.getApi().getTx(txid)))
+          const tx = (hardTxQueries[txid] ??= await limiter.schedule(() => this.getApi().getTx(txid)))
           const activity = await this.txToBalanceActivity(address, tx)
           if (activity) {
             await callbackFn(activity, tx)
@@ -161,7 +162,7 @@ export abstract class BitcoinishBalanceMonitor extends BlockbookConnected implem
       transactionPage.page < transactionPage.totalPages ||
       transactionPage.totalPages === -1
     ) {
-      transactionPage = await this._retryDced(() =>
+      transactionPage = await limiter.schedule(() =>
         this.getApi().getAddressDetails(address, {
           details: 'txs',
           page,
@@ -229,7 +230,7 @@ export abstract class BitcoinishBalanceMonitor extends BlockbookConnected implem
           continue
         }
         const vout = input.vout ?? 0
-        const inputTxInfo = await this._retryDced(() => this.getApi().getTx(inputTxid))
+        const inputTxInfo = await limiter.schedule(() => this.getApi().getTx(inputTxid))
         const output = inputTxInfo.vout[vout]
         utxosSpent.push({
           txid: inputTxid,

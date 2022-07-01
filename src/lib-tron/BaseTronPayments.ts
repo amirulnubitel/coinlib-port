@@ -16,6 +16,7 @@ import {
   PaymentsError,
   PaymentsErrorCode,
   PayportOutput,
+  limiter
 } from '../lib-common'
 import { isType, Numeric } from '../ts-common'
 
@@ -212,14 +213,14 @@ export abstract class BaseTronPayments<Config extends BaseTronPaymentsConfig> ex
      * `(DUP_TRANASCTION_ERROR && Transaction not found)` -> tx was probably invalid? Maybe? Who knows…
      */
     try {
-      const status = await this._retryDced(() => this.tronweb.trx.sendRawTransaction(tx.data as TronWebTransaction))
+      const status = await limiter.schedule(() => this.tronweb.trx.sendRawTransaction(tx.data as TronWebTransaction))
       let success = false
       let rebroadcast = false
       if (status.result || status.code === 'SUCCESS') {
         success = true
       } else {
         try {
-          await this._retryDced(() => this.tronweb.trx.getTransaction(tx.id))
+          await limiter.schedule(() => this.tronweb.trx.getTransaction(tx.id))
           success = true
           rebroadcast = true
         } catch (e) {

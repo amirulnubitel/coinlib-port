@@ -23,6 +23,7 @@ import {
   DEFAULT_MAX_FEE_PERCENT,
   LookupTxDataByHashes,
   BigNumber,
+  limiter
 } from '../../lib-common'
 import { isUndefined, isType, Numeric, toBigNumber, assertType, isNumber } from '../../ts-common'
 import * as t from 'io-ts'
@@ -1065,7 +1066,7 @@ export abstract class BitcoinishPayments<Config extends BaseConfig>
   async broadcastTransaction(tx: BitcoinishSignedTransaction): Promise<BitcoinishBroadcastResult> {
     let txId: string
     try {
-      txId = await this._retryDced(() => this.getApi().sendTx(tx.data.hex))
+      txId = await limiter.schedule(() => this.getApi().sendTx(tx.data.hex))
       if (tx.id !== txId) {
         this.logger.warn(`Broadcasted ${this.coinSymbol} txid ${txId} doesn't match original txid ${tx.id}`)
       }

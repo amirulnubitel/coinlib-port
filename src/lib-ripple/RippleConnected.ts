@@ -79,36 +79,36 @@ export abstract class RippleConnected {
     }
   }
 
-  async _retryDced<T>(fn: () => Promise<T>): Promise<T> {
-    return promiseRetry(
-      (retry, attempt) => {
-        return fn().catch(async (e) => {
-          const eName = e ? e.constructor.name : ''
-          if (RETRYABLE_ERRORS.includes(eName)) {
-            if (CONNECTION_ERRORS.includes(eName)) {
-              this.logger.log(
-                'Connection error during rippleApi call, attempting to reconnect then ' +
-                  `retrying ${MAX_API_CALL_RETRIES - attempt} more times`,
-                e.toString(),
-              )
-              if (this.api.isConnected()) {
-                await this.api.disconnect()
-              }
-              await this.api.connect()
-            } else {
-              this.logger.log(
-                `Retryable error during rippleApi call, retrying ${MAX_API_CALL_RETRIES - attempt} more times`,
-                e.toString(),
-              )
-            }
-            retry(e)
-          }
-          throw e
-        })
-      },
-      {
-        retries: MAX_API_CALL_RETRIES,
-      },
-    )
-  }
+  // async _retryDced<T>(fn: () => Promise<T>): Promise<T> {
+  //   return promiseRetry(
+  //     (retry, attempt) => {
+  //       return fn().catch(async (e) => {
+  //         const eName = e ? e.constructor.name : ''
+  //         if (RETRYABLE_ERRORS.includes(eName)) {
+  //           if (CONNECTION_ERRORS.includes(eName)) {
+  //             this.logger.log(
+  //               'Connection error during rippleApi call, attempting to reconnect then ' +
+  //                 `retrying ${MAX_API_CALL_RETRIES - attempt} more times`,
+  //               e.toString(),
+  //             )
+  //             if (this.api.isConnected()) {
+  //               await this.api.disconnect()
+  //             }
+  //             await this.api.connect()
+  //           } else {
+  //             this.logger.log(
+  //               `Retryable error during rippleApi call, retrying ${MAX_API_CALL_RETRIES - attempt} more times`,
+  //               e.toString(),
+  //             )
+  //           }
+  //           retry(e)
+  //         }
+  //         throw e
+  //       })
+  //     },
+  //     {
+  //       retries: MAX_API_CALL_RETRIES,
+  //     },
+  //   )
+  // }
 }

@@ -9,6 +9,7 @@ import {
   TransactionStatus,
   BlockInfo,
   BigNumber,
+  limiter
 } from '../lib-common'
 import { Logger, DelegateLogger, isNil, assertType, Numeric, isUndefined } from '../ts-common'
 import TronWeb, { Transaction as TronTransaction } from 'tronweb'
@@ -129,12 +130,12 @@ export class TronPaymentsUtils implements PaymentsUtils {
     return { feeRate: '0', feeRateType: FeeRateType.Base }
   }
 
-  async _retryDced<T>(fn: () => Promise<T>): Promise<T> {
-    return retryIfDisconnected(fn, this.logger)
-  }
+  // async _retryDced<T>(fn: () => Promise<T>): Promise<T> {
+  //   return retryIfDisconnected(fn, this.logger)
+  // }
 
   getCurrentBlockNumber() {
-    return this._retryDced(async () => (await this.tronweb.trx.getCurrentBlock()).block_header.raw_data.number)
+    return limiter.schedule(async () => (await this.tronweb.trx.getCurrentBlock()).block_header.raw_data.number)
   }
 
   async getAddressUtxos() {
@@ -155,7 +156,7 @@ export class TronPaymentsUtils implements PaymentsUtils {
 
   async getAddressBalance(address: string): Promise<BalanceResult> {
     try {
-      const balanceSun = await this._retryDced(() => this.tronweb.trx.getBalance(address))
+      const balanceSun = await limiter.schedule(() => this.tronweb.trx.getBalance(address))
       const sweepable = this.canSweepBalanceSun(balanceSun)
       const confirmedBalance = toMainDenominationBigNumber(balanceSun)
       const spendableBalance = BigNumber.max(0, confirmedBalance.minus(MIN_BALANCE_TRX))
@@ -192,11 +193,15 @@ export class TronPaymentsUtils implements PaymentsUtils {
 
   async getTransactionInfo(txid: string): Promise<TronTransactionInfo> {
     try {
-      const [tx, txInfo, currentBlock] = await Promise.all([
-        this._retryDced(() => this.tronweb.trx.getTransaction(txid)),
-        this._retryDced(() => this.tronweb.trx.getTransactionInfo(txid)),
-        this._retryDced(() => this.tronweb.trx.getCurrentBlock()),
-      ])
+      const tx = await limiter.schedule(() => this.tronweb.trx.getTransaction(txid));
+      const txInfo = await limiter.schedule(() => this.tronweb.trx.getTransactionInfo(txid));
+      const currentBlock = await limiter.schedule(() => this.tronweb.trx.getCurrentBlock());
+
+      // const [tx, txInfo, currentBlock] = await Promise.all([
+      //   this._retryDced(() => this.tronweb.trx.getTransaction(txid)),
+      //   this._retryDced(() => this.tronweb.trx.getTransactionInfo(txid)),
+      //   this._retryDced(() => this.tronweb.trx.getCurrentBlock()),
+      // ])
 
       const { amountTrx, fromAddress, toAddress } = this.extractTxFields(tx)
 
@@ -249,7 +254,7 @@ export class TronPaymentsUtils implements PaymentsUtils {
 
   async getBlock(id?: string | number): Promise<BlockInfo> {
     try {
-      const raw = await this._retryDced(() =>
+      const raw = await limiter.schedule(() =>
         isUndefined(id)
           ? this.tronweb.trx.getCurrentBlock()
           : this.tronweb.trx.getBlock(id))

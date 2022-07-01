@@ -12,6 +12,7 @@ import {
   GetFeeRecommendationOptions,
   GetTransactionInfoOptions,
   BigNumber,
+  limiter
 } from '../../lib-common'
 import { isNil, assertType, Numeric, isUndefined } from '../../ts-common'
 import { GetBlockOptions } from 'blockbook-client'
@@ -164,7 +165,7 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
       id = await this.getCurrentBlockHash()
     }
     const { includeTxs, ...getBlockOptions } = options
-    const raw = await this._retryDced(() => this.getApi().getBlock(id!, getBlockOptions), ['not found'])
+    const raw = await limiter.schedule(() => this.getApi().getBlock(id!, getBlockOptions))
     if (!raw.time) {
       throw new Error(`${this.coinSymbol} block ${id ?? 'latest'} missing timestamp`)
     }
@@ -181,11 +182,13 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
   }
 
   async getCurrentBlockHash() {
-    return this._retryDced(async () => (await this.getApi().getBestBlock()).hash)
+    const bestBlock = await limiter.schedule(() => this.getApi().getBestBlock())
+    return bestBlock.hash;
   }
 
   async getCurrentBlockNumber() {
-    return this._retryDced(async () => (await this.getApi().getBestBlock()).height)
+    const bestBlock = await limiter.schedule(() => this.getApi().getBestBlock())
+    return bestBlock.height;
   }
 
   isAddressBalanceSweepable(balance: Numeric): boolean {
@@ -193,7 +196,7 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
   }
 
   async getAddressBalance(address: string): Promise<BalanceResult> {
-    const result = await this._retryDced(() => this.getApi().getAddressDetails(address, { details: 'basic' }))
+    const result = await limiter.schedule(() => this.getApi().getAddressDetails(address, { details: 'basic' }))
     const confirmedBalance = this.toMainDenominationBigNumber(result.balance)
     const unconfirmedBalance = this.toMainDenominationBigNumber(result.unconfirmedBalance)
     const spendableBalance = confirmedBalance.plus(unconfirmedBalance)
@@ -208,14 +211,14 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
   }
 
   async getAddressUtxos(address: string): Promise<UtxoInfo[]> {
-    const utxosRaw = await this._retryDced(() => this.getApi().getUtxosForAddress(address))
+    const utxosRaw = await limiter.schedule(() => this.getApi().getUtxosForAddress(address))
     const txsById: { [txid: string]: NormalizedTxBitcoin } = {}
     const utxos: UtxoInfo[] = await Promise.all(
       utxosRaw.map(async (data) => {
         const { value, height, lockTime, coinbase } = data
 
         // Retrieve the raw tx data to enable returning raw hex data. Memoize in a temporary object for efficiency
-        const tx = txsById[data.txid] ?? (await this._retryDced(() => this.getApi().getTx(data.txid)))
+        const tx = txsById[data.txid] ?? (await limiter.schedule(() => this.getApi().getTx(data.txid)))
         txsById[data.txid] = tx
         const output = tx.vout[data.vout]
         const res: UtxoInfo = {
@@ -258,8 +261,8 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
   }
 
   async getTransactionInfo(txId: string, options?: GetTransactionInfoOptions): Promise<BitcoinishTransactionInfo> {
-    const tx = await this._retryDced(() => this.getApi().getTx(txId))
-    const txSpecific = await this._retryDced(() => this.getApi().getTxSpecific(txId))
+    const tx = await limiter.schedule(() => this.getApi().getTx(txId))
+    const txSpecific = await limiter.schedule(() => this.getApi().getTxSpecific(txId))
 
     // Our "weight" for fee purposes is vbytes, but that isn't a thing on all networks (BCH, DOGE)
     const weight = txSpecific.vsize || txSpecific.size

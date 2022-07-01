@@ -17,6 +17,7 @@ import {
   PayportOutput,
   CreateTransactionOptions,
   BigNumber,
+  limiter
 } from '../lib-common'
 import { assertType, isNil, Numeric, isUndefined } from '../ts-common'
 import { Prepare } from 'ripple-lib/dist/npm/transaction/types'
@@ -302,7 +303,7 @@ export abstract class BaseRipplePayments<Config extends BaseRipplePaymentsConfig
           `a balance of at least ${MIN_BALANCE} XRP to receive funds (${toAddressBalance} XRP)`,
       )
     }
-    const preparedTx = await this._retryDced(() =>
+    const preparedTx = await limiter.schedule(() =>
       this.api.preparePayment(
         fromAddress,
         {
@@ -378,7 +379,7 @@ export abstract class BaseRipplePayments<Config extends BaseRipplePaymentsConfig
     const maxLedgerVersionOffset =
       options.maxLedgerVersionOffset || this.config.maxLedgerVersionOffset || DEFAULT_MAX_LEDGER_VERSION_OFFSET
 
-    const preparedTx = await this._retryDced(() =>
+    const preparedTx = await limiter.schedule(() =>
       this.api.prepareSettings(
         address,
         {
@@ -463,7 +464,7 @@ export abstract class BaseRipplePayments<Config extends BaseRipplePaymentsConfig
       const existing = await this.getTransactionInfo(signedTx.id)
       rebroadcast = existing.id === signedTx.id
     } catch (e) {}
-    const result = (await this._retryDced(() => this.api.submit(signedTxString, true))) as any
+    const result = (await limiter.schedule(() => this.api.submit(signedTxString, true))) as any
     this.logger.debug('broadcasted', result)
     const resultCode = result.engine_result || result.resultCode || ''
     if (resultCode === 'terPRE_SEQ') {

@@ -23,6 +23,7 @@
     "bitcoinjs-lib": "^6.0.1",
     "bitcoinjs-lib-bigint": "^0.0.1-security",
     "blockbook-client": "^0.7.5",
+    "bottleneck": "^2.19.5",
     "bs58": "^5.0.0",
     "ecpair": "^2.0.1",
     "fp-ts": "^1.19.5",
