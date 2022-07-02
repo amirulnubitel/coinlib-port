@@ -23,7 +23,7 @@ import {
   DEFAULT_MAX_FEE_PERCENT,
   LookupTxDataByHashes,
   BigNumber,
-  limiter
+  limiter,
 } from '../../lib-common'
 import { isUndefined, isType, Numeric, toBigNumber, assertType, isNumber } from '../../ts-common'
 import * as t from 'io-ts'

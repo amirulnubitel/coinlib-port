@@ -16,7 +16,7 @@ import {
   PaymentsError,
   PaymentsErrorCode,
   PayportOutput,
-  limiter
+  limiter,
 } from '../lib-common'
 import { isType, Numeric } from '../ts-common'
 
@@ -40,9 +40,11 @@ import {
 } from './constants'
 import { TronPaymentsUtils } from './TronPaymentsUtils'
 
-export abstract class BaseTronPayments<Config extends BaseTronPaymentsConfig> extends TronPaymentsUtils
+export abstract class BaseTronPayments<Config extends BaseTronPaymentsConfig>
+  extends TronPaymentsUtils
   implements
-    BasePayments<Config, TronUnsignedTransaction, TronSignedTransaction, TronBroadcastResult, TronTransactionInfo> {
+    BasePayments<Config, TronUnsignedTransaction, TronSignedTransaction, TronBroadcastResult, TronTransactionInfo>
+{
   // You may notice that many function blocks are enclosed in a try/catch.
   // I had to do this because tronweb thinks it's a good idea to throw
   // strings instead of Errors and now we need to convert them all ourselves

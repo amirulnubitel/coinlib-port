@@ -6,7 +6,7 @@ import {
   RetrieveBalanceActivitiesResult,
   isMatchingError,
   BigNumber,
-  limiter
+  limiter,
 } from '../lib-common'
 import { FormattedPaymentTransaction, FormattedTransactionType } from 'ripple-lib/dist/npm/transaction/types'
 import { TransactionsOptions } from 'ripple-lib/dist/npm/ledger/transactions'

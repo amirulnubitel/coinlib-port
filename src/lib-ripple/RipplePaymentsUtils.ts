@@ -8,7 +8,7 @@ import {
   TransactionStatus,
   BlockInfo,
   BigNumber,
-  limiter
+  limiter,
 } from '../lib-common'
 import { isNil, assertType, Numeric, isMatchingError, isUndefined, isString } from '../ts-common'
 

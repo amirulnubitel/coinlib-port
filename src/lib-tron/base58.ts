@@ -46,7 +46,7 @@ export function encode58(buffer: Buffer | number[]) {
 
   return digits
     .reverse()
-    .map(digit => ALPHABET[digit])
+    .map((digit) => ALPHABET[digit])
     .join('')
 }
 

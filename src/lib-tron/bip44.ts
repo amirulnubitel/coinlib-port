@@ -25,9 +25,7 @@ export function deriveAddress(xpub: string, index: number): string {
     throw new Error('Invalid xpub')
   }
   const key = bip32.fromBase58(xpub)
-  const derived = deriveBasePath(key)
-    .derive(0)
-    .derive(index)
+  const derived = deriveBasePath(key).derive(0).derive(index)
   return hdPublicKeyToAddress(derived)
 }
 
@@ -36,9 +34,7 @@ export function derivePrivateKey(xprv: string, index: number): string {
     throw new Error('Invalid xprv')
   }
   const key = bip32.fromBase58(xprv)
-  const derived = deriveBasePath(key)
-    .derive(0)
-    .derive(index)
+  const derived = deriveBasePath(key).derive(0).derive(index)
   return hdPrivateKeyToPrivateKey(derived)
 }
 

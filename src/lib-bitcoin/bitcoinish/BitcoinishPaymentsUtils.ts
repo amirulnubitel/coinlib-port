@@ -12,7 +12,7 @@ import {
   GetFeeRecommendationOptions,
   GetTransactionInfoOptions,
   BigNumber,
-  limiter
+  limiter,
 } from '../../lib-common'
 import { isNil, assertType, Numeric, isUndefined } from '../../ts-common'
 import { GetBlockOptions } from 'blockbook-client'
@@ -183,12 +183,12 @@ export abstract class BitcoinishPaymentsUtils extends BlockbookConnected impleme
 
   async getCurrentBlockHash() {
     const bestBlock = await limiter.schedule(() => this.getApi().getBestBlock())
-    return bestBlock.hash;
+    return bestBlock.hash
   }
 
   async getCurrentBlockNumber() {
     const bestBlock = await limiter.schedule(() => this.getApi().getBestBlock())
-    return bestBlock.height;
+    return bestBlock.height
   }
 
   isAddressBalanceSweepable(balance: Numeric): boolean {

@@ -9,7 +9,7 @@ import {
   FilterBlockAddressesCallback,
   BlockInfo,
   BigNumber,
-  limiter
+  limiter,
 } from '../../lib-common'
 import { EventEmitter } from 'events'
 import {

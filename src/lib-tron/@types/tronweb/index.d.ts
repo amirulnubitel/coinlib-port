@@ -149,7 +149,8 @@ declare module 'tronweb' {
         fullNode: string
         solidityNode: string
         eventServer: string
-      })
+      }
+  )
 
   export default class TronWeb {
     constructor(config: TronWebConfig)

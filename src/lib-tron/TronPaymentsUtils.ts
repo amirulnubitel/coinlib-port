@@ -9,7 +9,7 @@ import {
   TransactionStatus,
   BlockInfo,
   BigNumber,
-  limiter
+  limiter,
 } from '../lib-common'
 import { Logger, DelegateLogger, isNil, assertType, Numeric, isUndefined } from '../ts-common'
 import TronWeb, { Transaction as TronTransaction } from 'tronweb'
@@ -41,7 +41,6 @@ import { retryIfDisconnected, toError } from './utils'
 import { pick } from 'lodash'
 
 export class TronPaymentsUtils implements PaymentsUtils {
-
   readonly coinSymbol = COIN_SYMBOL
   readonly coinName = COIN_NAME
   readonly coinDecimals = DECIMAL_PLACES
@@ -109,7 +108,7 @@ export class TronPaymentsUtils implements PaymentsUtils {
   }
 
   isValidPayport(payport: Payport): payport is Payport {
-    return Payport.is(payport) && !(this._getPayportValidationMessage(payport))
+    return Payport.is(payport) && !this._getPayportValidationMessage(payport)
   }
 
   toMainDenomination(amount: string | number): string {
@@ -193,9 +192,9 @@ export class TronPaymentsUtils implements PaymentsUtils {
 
   async getTransactionInfo(txid: string): Promise<TronTransactionInfo> {
     try {
-      const tx = await limiter.schedule(() => this.tronweb.trx.getTransaction(txid));
-      const txInfo = await limiter.schedule(() => this.tronweb.trx.getTransactionInfo(txid));
-      const currentBlock = await limiter.schedule(() => this.tronweb.trx.getCurrentBlock());
+      const tx = await limiter.schedule(() => this.tronweb.trx.getTransaction(txid))
+      const txInfo = await limiter.schedule(() => this.tronweb.trx.getTransactionInfo(txid))
+      const currentBlock = await limiter.schedule(() => this.tronweb.trx.getCurrentBlock())
 
       // const [tx, txInfo, currentBlock] = await Promise.all([
       //   this._retryDced(() => this.tronweb.trx.getTransaction(txid)),
@@ -255,9 +254,8 @@ export class TronPaymentsUtils implements PaymentsUtils {
   async getBlock(id?: string | number): Promise<BlockInfo> {
     try {
       const raw = await limiter.schedule(() =>
-        isUndefined(id)
-          ? this.tronweb.trx.getCurrentBlock()
-          : this.tronweb.trx.getBlock(id))
+        isUndefined(id) ? this.tronweb.trx.getCurrentBlock() : this.tronweb.trx.getBlock(id),
+      )
       return {
         id: raw.blockID,
         height: raw.block_header.raw_data.number,
