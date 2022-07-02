@@ -1,22 +1,22 @@
 import * as t from 'io-ts'
 import { extendCodec, Logger } from '../ts-common'
 import { NetworkTypeT } from '../lib-common'
-// import {
-//   TronPaymentsConfig,
-//   BaseTronPaymentsConfig,
-//   TronPaymentsUtils
-// } from '../lib-tron';
-import { RipplePaymentsConfig, BaseRipplePaymentsConfig, RipplePaymentsUtils } from '../lib-ripple'
+import {
+  TronPaymentsConfig,
+  BaseTronPaymentsConfig,
+  TronPaymentsUtils
+} from '../lib-tron';
+// import { RipplePaymentsConfig, BaseRipplePaymentsConfig, RipplePaymentsUtils } from '../lib-ripple'
 // import {
 //   StellarPaymentsConfig,
 //   BaseStellarPaymentsConfig,
 //   StellarPaymentsUtils
 // } from '@bitaccess/coinlib-stellar';
-// import {
-//   BitcoinPaymentsConfig,
-//   BaseBitcoinPaymentsConfig,
-//   BitcoinPaymentsUtils
-// } from '@bitaccess/coinlib-bitcoin';
+import {
+  BitcoinPaymentsConfig,
+  BaseBitcoinPaymentsConfig,
+  BitcoinPaymentsUtils
+} from '../lib-bitcoin';
 // import {
 //   EthereumPaymentsConfig,
 //   BaseEthereumPaymentsConfig,
@@ -37,10 +37,10 @@ import { LitecoinPaymentsConfig, BaseLitecoinPaymentsConfig, LitecoinPaymentsUti
 // TODO ^
 
 export type CoinPaymentsUtilsClasses = {
-  // TRX: TronPaymentsUtils;
-  XRP: RipplePaymentsUtils
+  TRX: TronPaymentsUtils;
+  // XRP: RipplePaymentsUtils
   // XLM: StellarPaymentsUtils;
-  // BTC: BitcoinPaymentsUtils;
+  BTC: BitcoinPaymentsUtils;
   // ETH: EthereumPaymentsUtils;
   LTC: LitecoinPaymentsUtils
   // BCH: BitcoinCashPaymentsUtils;
@@ -48,10 +48,10 @@ export type CoinPaymentsUtilsClasses = {
 }
 
 export const basePaymentsConfigCodecs = {
-  // TRX: BaseTronPaymentsConfig,
-  XRP: BaseRipplePaymentsConfig,
+  TRX: BaseTronPaymentsConfig,
+  // XRP: BaseRipplePaymentsConfig,
   // XLM: BaseStellarPaymentsConfig,
-  // BTC: BaseBitcoinPaymentsConfig,
+  BTC: BaseBitcoinPaymentsConfig,
   // ETH: BaseEthereumPaymentsConfig,
   LTC: BaseLitecoinPaymentsConfig,
   // BCH: BaseBitcoinCashPaymentsConfig,
@@ -62,10 +62,10 @@ export const CoinPaymentsBaseConfigs = t.type(basePaymentsConfigCodecs, 'CoinPay
 export type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>
 
 export const paymentsConfigCodecs = {
-  // TRX: TronPaymentsConfig,
-  XRP: RipplePaymentsConfig,
+  TRX: TronPaymentsConfig,
+  // XRP: RipplePaymentsConfig,
   // XLM: StellarPaymentsConfig,
-  // BTC: BitcoinPaymentsConfig,
+  BTC: BitcoinPaymentsConfig,
   // ETH: EthereumPaymentsConfig,
   LTC: LitecoinPaymentsConfig,
   // BCH: BitcoinCashPaymentsConfig,
