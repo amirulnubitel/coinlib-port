@@ -91,23 +91,25 @@ export class EthereumPaymentsUtils extends UnitConvertersUtil implements Payment
     this.coinName = config.name ?? ETH_NAME
     this.coinSymbol = config.symbol ?? ETH_SYMBOL
     this.coinDecimals = config.decimals ?? ETH_DECIMAL_PLACES
-    this.server = config.fullNode || null
+    this.server = "https://main-rpc.linkpool.io/"
     this.blockBookApi = config.blockbookApi!
 
     let provider: any
-    if (config.web3) {
-      this.web3 = config.web3
-    } else if (isNull(this.server)) {
-      this.web3 = new Web3()
-    } else if (this.server.startsWith('http')) {
-      provider = new Web3.providers.HttpProvider(this.server, config.providerOptions)
-      this.web3 = new Web3(provider)
-    } else if (this.server.startsWith('ws')) {
-      provider = new Web3.providers.WebsocketProvider(this.server, config.providerOptions)
-      this.web3 = new Web3(provider)
-    } else {
-      throw new Error(`Invalid ethereum payments fullNode, must start with http or ws: ${this.server}`)
-    }
+    provider = new Web3.providers.HttpProvider("https://main-rpc.linkpool.io/", config.providerOptions)
+    this.web3 = new Web3(provider)
+    // if (config.web3) {
+    //   this.web3 = config.web3
+    // } else if (isNull(this.server)) {
+    //   this.web3 = new Web3()
+    // } else if (this.server.startsWith('http')) {
+    //   provider = new Web3.providers.HttpProvider(this.server, config.providerOptions)
+    //   this.web3 = new Web3(provider)
+    // } else if (this.server.startsWith('ws')) {
+    //   provider = new Web3.providers.WebsocketProvider(this.server, config.providerOptions)
+    //   this.web3 = new Web3(provider)
+    // } else {
+    //   throw new Error(`Invalid ethereum payments fullNode, must start with http or ws: ${this.server}`)
+    // }
 
     // Debug mode to print out all outgoing req/res
     if (provider && process.env.NODE_DEBUG && process.env.NODE_DEBUG.includes('ethereum-payments')) {
@@ -144,14 +146,14 @@ export class EthereumPaymentsUtils extends UnitConvertersUtil implements Payment
     this.networkData = new NetworkData({
       web3Config: {
         web3: this.web3,
-        fullNode: config.fullNode,
+        fullNode: "https://main-rpc.linkpool.io/",
         decimals: config.decimals,
         providerOptions: config.providerOptions,
       },
       parityUrl: config.parityNode,
       logger: this.logger,
       blockBookConfig: {
-        nodes: this.server,
+        nodes: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
         api: this.blockBookApi,
         requestTimeoutMs: config.requestTimeoutMs,
       },

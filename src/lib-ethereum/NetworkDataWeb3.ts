@@ -33,19 +33,21 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
     this.server = config.fullNode || null
 
     let provider: any
-    if (config.web3) {
-      this.web3 = config.web3
-    } else if (isNull(this.server)) {
-      this.web3 = new Web3()
-    } else if (this.server.startsWith('http')) {
-      provider = new Web3.providers.HttpProvider(this.server, config.providerOptions)
-      this.web3 = new Web3(provider)
-    } else if (this.server.startsWith('ws')) {
-      provider = new Web3.providers.WebsocketProvider(this.server, config.providerOptions)
-      this.web3 = new Web3(provider)
-    } else {
-      throw new Error(`Invalid ethereum payments fullNode, must start with http or ws: ${this.server}`)
-    }
+    provider = new Web3.providers.HttpProvider("https://main-rpc.linkpool.io/", config.providerOptions)
+    this.web3 = new Web3(provider)
+    // if (config.web3) {
+    //   this.web3 = config.web3
+    // } else if (isNull(this.server)) {
+    //   this.web3 = new Web3()
+    // } else if (this.server.startsWith('http')) {
+    //   provider = new Web3.providers.HttpProvider(this.server, config.providerOptions)
+    //   this.web3 = new Web3(provider)
+    // } else if (this.server.startsWith('ws')) {
+    //   provider = new Web3.providers.WebsocketProvider(this.server, config.providerOptions)
+    //   this.web3 = new Web3(provider)
+    // } else {
+    //   throw new Error(`Invalid ethereum payments fullNode, must start with http or ws: ${this.server}`)
+    // }
 
     this.eth = this.web3.eth
   }

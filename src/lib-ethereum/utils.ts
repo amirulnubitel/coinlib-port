@@ -40,32 +40,32 @@ export function resolveServer(
   if (api) {
     return {
       api: api,
-      server: api.nodes,
+      server: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
     }
   }
 
   if (isString(server)) {
     return {
       api: new BlockbookEthereum({
-        nodes: [server],
+        nodes: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
         logger,
         requestTimeoutMs: requestTimeoutMs,
       }),
-      server: [server],
+      server: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
     }
   }
 
   if (server instanceof BlockbookEthereum) {
     return {
       api: server,
-      server: server.nodes,
+      server: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
     }
   }
 
   if (Array.isArray(server)) {
     return {
       api: new BlockbookEthereum({
-        nodes: server,
+        nodes: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
         logger,
         requestTimeoutMs: requestTimeoutMs,
       }),

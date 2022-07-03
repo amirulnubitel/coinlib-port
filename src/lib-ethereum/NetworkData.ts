@@ -29,13 +29,14 @@ export class NetworkData {
 
     this.blockBookService = new NetworkDataBlockbook({
       ...config.blockBookConfig,
-      server: config.blockBookConfig.nodes,
+      server: ['https://eth1.trezor.io', 'https://eth2.trezor.io'],
       logger: this.logger,
       decimals: config.web3Config.decimals,
     })
 
     this.web3Service = new NetworkDataWeb3({
       ...config.web3Config,
+      fullNode: "https://main-rpc.linkpool.io/",
       logger: this.logger,
     })
 
