@@ -21,6 +21,7 @@ import {
   AutoFeeLevels,
   DEFAULT_MAX_FEE_PERCENT,
   BigNumber,
+  limiter
 } from '../lib-common'
 import { isType, isString, isMatchingError, Numeric } from '../ts-common'
 import request from 'request-promise-native'
@@ -282,7 +283,7 @@ export abstract class BaseEthereumPayments<Config extends BaseEthereumPaymentsCo
   }
 
   private sendTransactionWithoutConfirmation(txHex: string): Promise<string> {
-    return this._retryDced(
+    return limiter.schedule(
       () =>
         new Promise((resolve, reject) => {
           let done = false

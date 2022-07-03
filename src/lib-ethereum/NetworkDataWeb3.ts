@@ -1,4 +1,4 @@
-import { BlockInfo, BigNumber } from '../lib-common'
+import { BlockInfo, BigNumber, limiter } from '../lib-common'
 import { Logger, DelegateLogger, isNull, isNumber } from '../ts-common'
 import Web3 from 'web3'
 import { TransactionConfig } from 'web3-core'
@@ -59,11 +59,11 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
   }
 
   async getCurrentBlockNumber() {
-    return this._retryDced(() => this.eth.getBlockNumber())
+    return limiter.schedule(() => this.eth.getBlockNumber())
   }
 
   async getTransactionReceipt(txId: string) {
-    return this._retryDced(() => this.eth.getTransactionReceipt(txId))
+    return limiter.schedule(() => this.eth.getTransactionReceipt(txId))
   }
 
   async getTokenInfo(tokenAddress: string) {
@@ -79,13 +79,13 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
   }
 
   async getBlock(id?: string | number): Promise<BlockInfo> {
-    const block = await this._retryDced(() => this.eth.getBlock(id ?? 'latest', true))
+    const block = await limiter.schedule(() => this.eth.getBlock(id ?? 'latest', true))
 
     return this.standardizeBlock(block)
   }
 
   async getERC20Transaction(txId: string, tokenAddress: string) {
-    const tx = await this._retryDced(() => this.eth.getTransaction(txId))
+    const tx = await limiter.schedule(() => this.eth.getTransaction(txId))
 
     const txReceipt = await this.getTransactionReceipt(txId)
 
@@ -104,7 +104,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
   }
 
   async getAddressBalance(address: string) {
-    return this._retryDced(() => this.eth.getBalance(address))
+    return limiter.schedule(() => this.eth.getBalance(address))
   }
 
   async getAddressBalanceERC20(address: string, tokenAddress: string) {
@@ -117,7 +117,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
   async estimateGas(txObject: TransactionConfig, txType: EthTxType): Promise<number> {
     try {
       // estimateGas mutates txObject so must pass in a clone
-      let gas = await this._retryDced(() => this.eth.estimateGas({ ...txObject }))
+      let gas = await limiter.schedule(() => this.eth.estimateGas({ ...txObject }))
       if (gas > 21000) {
         // No need for multiplier for regular ethereum transfers
         gas = gas * GAS_ESTIMATE_MULTIPLIER
@@ -139,7 +139,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
 
   async getWeb3Nonce(address: string): Promise<string> {
     try {
-      const nonce = await this._retryDced(() => this.eth.getTransactionCount(address, 'pending'))
+      const nonce = await limiter.schedule(() => this.eth.getTransactionCount(address, 'pending'))
       return new BigNumber(nonce).toString()
     } catch (e) {
       return ''
@@ -148,7 +148,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
 
   async getWeb3GasPrice(): Promise<string> {
     try {
-      const wei = new BigNumber(await this._retryDced(() => this.eth.getGasPrice()))
+      const wei = new BigNumber(await limiter.schedule(() => this.eth.getGasPrice()))
       this.logger.log(`Retrieved gas price of ${wei.div(1e9)} Gwei from web3`)
       return wei.dp(0, BigNumber.ROUND_DOWN).toFixed()
     } catch (e) {
@@ -158,7 +158,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
   }
 
   async getTransaction(txId: string) {
-    const tx = await this._retryDced(() => this.eth.getTransaction(txId))
+    const tx = await limiter.schedule(() => this.eth.getTransaction(txId))
 
     const txReceipt = await this.getTransactionReceipt(txId)
     const currentBlockNumber = await this.getCurrentBlockNumber()

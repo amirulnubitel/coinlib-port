@@ -1,4 +1,4 @@
-import { AutoFeeLevels, BlockInfo, FunctionPropertyNames, NewBlockCallback, BigNumber } from '../lib-common'
+import { AutoFeeLevels, BlockInfo, FunctionPropertyNames, NewBlockCallback, BigNumber, limiter } from '../lib-common'
 import { Logger, DelegateLogger } from '../ts-common'
 import { GetAddressDetailsOptions, NormalizedTxEthereum } from 'blockbook-client'
 import * as request from 'request-promise-native'
@@ -173,7 +173,7 @@ export class NetworkData {
     }
     let body: { [key: string]: number }
     try {
-      body = await this._retryDced(() => request.get(options))
+      body = await limiter.schedule(() => request.get(options))
     } catch (e) {
       this.logger.warn('Failed to retrieve gas price from ethgasstation - ', e.toString())
       return ''
@@ -194,7 +194,7 @@ export class NetworkData {
   async getTxRaw(txId: string) {
     const blockbookApi = this.blockBookService.getApi()
 
-    return this._retryDced(() => blockbookApi.getTx(txId))
+    return limiter.schedule(() => blockbookApi.getTx(txId))
   }
 
   async subscribeAddresses(

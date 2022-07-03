@@ -6,6 +6,7 @@ import {
   PaymentsError,
   PaymentsErrorCode,
   BigNumber,
+  limiter
 } from '../../lib-common'
 import { Numeric } from '../../ts-common'
 
@@ -224,7 +225,7 @@ export abstract class BaseErc20Payments<Config extends BaseErc20PaymentsConfig> 
   }
 
   private async getEthBaseBalance(address: string): Promise<BigNumber> {
-    const balanceBase = await this._retryDced(() => this.eth.getBalance(address))
+    const balanceBase = await limiter.schedule(() => this.eth.getBalance(address))
 
     return new BigNumber(balanceBase)
   }
