@@ -3,7 +3,7 @@ import { extendCodec, Logger } from '../ts-common'
 import { NetworkTypeT } from '../lib-common'
 import { TronPaymentsConfig, BaseTronPaymentsConfig, TronPaymentsUtils } from '../lib-tron'
 // import { RipplePaymentsConfig, BaseRipplePaymentsConfig, RipplePaymentsUtils } from '../lib-ripple'
-import { StellarPaymentsConfig, BaseStellarPaymentsConfig, StellarPaymentsUtils } from '../lib-stellar'
+// import { StellarPaymentsConfig, BaseStellarPaymentsConfig, StellarPaymentsUtils } from '../lib-stellar'
 import { BitcoinPaymentsConfig, BaseBitcoinPaymentsConfig, BitcoinPaymentsUtils } from '../lib-bitcoin'
 import { EthereumPaymentsConfig, BaseEthereumPaymentsConfig, EthereumPaymentsUtils } from '../lib-ethereum'
 import { LitecoinPaymentsConfig, BaseLitecoinPaymentsConfig, LitecoinPaymentsUtils } from '../lib-litecoin'
@@ -19,7 +19,7 @@ import { DogePaymentsConfig, BaseDogePaymentsConfig, DogePaymentsUtils } from '.
 export type CoinPaymentsUtilsClasses = {
   TRX: TronPaymentsUtils
   // XRP: RipplePaymentsUtils
-  XLM: StellarPaymentsUtils
+  // XLM: StellarPaymentsUtils
   BTC: BitcoinPaymentsUtils
   ETH: EthereumPaymentsUtils
   LTC: LitecoinPaymentsUtils
@@ -30,7 +30,7 @@ export type CoinPaymentsUtilsClasses = {
 export const basePaymentsConfigCodecs = {
   TRX: BaseTronPaymentsConfig,
   // XRP: BaseRipplePaymentsConfig,
-  XLM: BaseStellarPaymentsConfig,
+  // XLM: BaseStellarPaymentsConfig,
   BTC: BaseBitcoinPaymentsConfig,
   ETH: BaseEthereumPaymentsConfig,
   LTC: BaseLitecoinPaymentsConfig,
@@ -44,7 +44,7 @@ export type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>
 export const paymentsConfigCodecs = {
   TRX: TronPaymentsConfig,
   // XRP: RipplePaymentsConfig,
-  XLM: StellarPaymentsConfig,
+  // XLM: StellarPaymentsConfig,
   BTC: BitcoinPaymentsConfig,
   ETH: EthereumPaymentsConfig,
   LTC: LitecoinPaymentsConfig,
