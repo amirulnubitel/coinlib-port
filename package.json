@@ -9,8 +9,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --fix",
-    "prettier-format": "prettier --config prettier.config.js 'src/**/*.ts' --write",
-    "postinstall": "pnpm run build"
+    "prettier-format": "prettier --config prettier.config.js 'src/**/*.ts' --write"
   },
   "author": "dilan-dio4",
   "license": "ISC",
