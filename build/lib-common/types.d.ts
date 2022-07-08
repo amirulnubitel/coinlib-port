@@ -543,10 +543,10 @@ export declare const BaseBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
 export declare type BaseBroadcastResult = t.TypeOf<typeof BaseBroadcastResult>;
-export declare const BalanceActivityType: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">]>;
+export declare const BalanceActivityType: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">, t.LiteralC<"fee">]>;
 export declare type BalanceActivityType = t.TypeOf<typeof BalanceActivityType>;
 export declare const BalanceActivity: t.IntersectionC<[t.TypeC<{
-    type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">]>;
+    type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">, t.LiteralC<"fee">]>;
     networkType: t.Type<NetworkType, NetworkType, unknown>;
     networkSymbol: t.StringC;
     assetSymbol: t.StringC;
@@ -602,7 +602,7 @@ export declare const BalanceMonitorConfig: t.PartialC<{
 export declare type BalanceMonitorConfig = t.TypeOf<typeof BalanceMonitorConfig>;
 export declare const GetBalanceActivityOptions: t.PartialC<{
     from: t.UnionC<[t.UnionC<[t.StringC, t.NumberC, import("../ts-common").BigNumberC]>, t.IntersectionC<[t.TypeC<{
-        type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">]>;
+        type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">, t.LiteralC<"fee">]>;
         networkType: t.Type<NetworkType, NetworkType, unknown>;
         networkSymbol: t.StringC;
         assetSymbol: t.StringC;
@@ -651,7 +651,7 @@ export declare const GetBalanceActivityOptions: t.PartialC<{
         tokenAddress: t.StringC;
     }>]>]>;
     to: t.UnionC<[t.UnionC<[t.StringC, t.NumberC, import("../ts-common").BigNumberC]>, t.IntersectionC<[t.TypeC<{
-        type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">]>;
+        type: t.UnionC<[t.LiteralC<"in">, t.LiteralC<"out">, t.LiteralC<"fee">]>;
         networkType: t.Type<NetworkType, NetworkType, unknown>;
         networkSymbol: t.StringC;
         assetSymbol: t.StringC;

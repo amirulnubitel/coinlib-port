@@ -222,7 +222,7 @@ exports.BaseTransactionInfo = (0, ts_common_1.extendCodec)(exports.TransactionCo
 exports.BaseBroadcastResult = t.type({
     id: t.string,
 }, 'BaseBroadcastResult');
-exports.BalanceActivityType = t.union([t.literal('in'), t.literal('out')], 'BalanceActivityType');
+exports.BalanceActivityType = t.union([t.literal('in'), t.literal('out'), t.literal('fee')], 'BalanceActivityType');
 exports.BalanceActivity = (0, ts_common_1.requiredOptionalCodec)({
     type: exports.BalanceActivityType,
     networkType: exports.NetworkTypeT,

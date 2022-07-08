@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ecc = exports.ecpair = exports.bip32 = exports.BigNumber = void 0;
 /*
  *  This files includes all shared dependencies across packages
- *  Centrolized dependencies can guarante the version consistency
+ *  Centralized dependencies can guarantee the version consistency
  */
 const bignumber_js_1 = __importDefault(require("bignumber.js"));
 exports.BigNumber = bignumber_js_1.default;

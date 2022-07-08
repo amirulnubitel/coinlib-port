@@ -21,7 +21,7 @@ import {
   AutoFeeLevels,
   DEFAULT_MAX_FEE_PERCENT,
   BigNumber,
-  limiter
+  limiter,
 } from '../lib-common'
 import { isType, isString, isMatchingError, Numeric } from '../ts-common'
 import request from 'request-promise-native'

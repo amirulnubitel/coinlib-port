@@ -6,7 +6,7 @@ import {
   PaymentsError,
   PaymentsErrorCode,
   BigNumber,
-  limiter
+  limiter,
 } from '../../lib-common'
 import { Numeric } from '../../ts-common'
 

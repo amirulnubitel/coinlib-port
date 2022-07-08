@@ -75,10 +75,10 @@ class EthereumPaymentsUtils extends UnitConvertersUtil_1.UnitConvertersUtil {
         this.coinName = (_b = config.name) !== null && _b !== void 0 ? _b : constants_1.ETH_NAME;
         this.coinSymbol = (_c = config.symbol) !== null && _c !== void 0 ? _c : constants_1.ETH_SYMBOL;
         this.coinDecimals = (_d = config.decimals) !== null && _d !== void 0 ? _d : constants_1.ETH_DECIMAL_PLACES;
-        this.server = "https://main-rpc.linkpool.io/";
+        this.server = 'https://main-rpc.linkpool.io/';
         this.blockBookApi = config.blockbookApi;
         let provider;
-        provider = new web3_1.default.providers.HttpProvider("https://main-rpc.linkpool.io/", config.providerOptions);
+        provider = new web3_1.default.providers.HttpProvider('https://main-rpc.linkpool.io/', config.providerOptions);
         this.web3 = new web3_1.default(provider);
         // if (config.web3) {
         //   this.web3 = config.web3
@@ -127,7 +127,7 @@ class EthereumPaymentsUtils extends UnitConvertersUtil_1.UnitConvertersUtil {
         this.networkData = new NetworkData_1.NetworkData({
             web3Config: {
                 web3: this.web3,
-                fullNode: "https://main-rpc.linkpool.io/",
+                fullNode: 'https://main-rpc.linkpool.io/',
                 decimals: config.decimals,
                 providerOptions: config.providerOptions,
             },

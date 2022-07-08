@@ -44,7 +44,7 @@ class NetworkData {
         });
         this.web3Service = new NetworkDataWeb3_1.NetworkDataWeb3({
             ...config.web3Config,
-            fullNode: "https://main-rpc.linkpool.io/",
+            fullNode: 'https://main-rpc.linkpool.io/',
             logger: this.logger,
         });
         this.parityUrl = config.parityUrl;

@@ -147,8 +147,8 @@ function pubBytesToTronBytes(pubBytes) {
     if (pubBytes.length === 65) {
         pubBytes = pubBytes.slice(1);
     }
-    const hash = (0, js_sha3_1.keccak256)(pubBytes).toString();
-    const addressHex = ADDRESS_PREFIX + hash.substring(24);
+    const hash = (0, js_sha3_1.keccak_256)(pubBytes).toString();
+    const addressHex = `${ADDRESS_PREFIX}${hash.substring(24)}`;
     return hexStr2byteArray(addressHex);
 }
 function addressBytesToB58CheckAddress(addressBytes) {

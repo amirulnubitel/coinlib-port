@@ -16,7 +16,7 @@ class NetworkDataWeb3 {
         this.logger = new ts_common_1.DelegateLogger(config.logger, 'EthereumWeb3');
         this.server = config.fullNode || null;
         let provider;
-        provider = new web3_1.default.providers.HttpProvider("https://main-rpc.linkpool.io/", config.providerOptions);
+        provider = new web3_1.default.providers.HttpProvider('https://main-rpc.linkpool.io/', config.providerOptions);
         this.web3 = new web3_1.default(provider);
         // if (config.web3) {
         //   this.web3 = config.web3

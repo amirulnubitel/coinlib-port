@@ -111,13 +111,11 @@ export declare class EthereumBalanceMonitor extends EthereumPaymentsUtils implem
     subscribeAddresses(addresses: string[]): Promise<void>;
     onBalanceActivity(callbackFn: BalanceActivityCallback): void;
     retrieveBalanceActivities(address: string, callbackFn: BalanceActivityCallback, options: GetBalanceActivityOptions): Promise<RetrieveBalanceActivitiesResult>;
+    private getAllInvolvedAddresses;
     retrieveBlockBalanceActivities(blockId: string | number, callbackFn: BalanceActivityCallback, filterRelevantAddresses: FilterBlockAddressesCallback): Promise<BlockInfo>;
-    getActivityType(activityAddress: string, { txFromAddress, txToAddress, txHash }: {
-        txFromAddress: string;
-        txToAddress: string;
-        txHash: string;
-    }): "in" | "out";
-    getBalanceActivityForNonTokenTransfer(address: string, tx: NormalizedTxEthereum): BalanceActivity[];
+    private getActivityType;
+    private getSelfBalanceActivities;
+    private getBalanceActivityForNonTokenTransfer;
     txToBalanceActivity(address: string, tx: NormalizedTxEthereum): Promise<BalanceActivity[]>;
     subscribeNewBlock(callbackFn: NewBlockCallback): Promise<void>;
 }
