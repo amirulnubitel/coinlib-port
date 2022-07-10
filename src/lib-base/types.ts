@@ -13,6 +13,7 @@ import { LitecoinPaymentsConfig, BaseLitecoinPaymentsConfig, LitecoinPaymentsUti
 //   BitcoinCashPaymentsUtils
 // } from '@bitaccess/coinlib-bitcoin-cash';
 import { DogePaymentsConfig, BaseDogePaymentsConfig, DogePaymentsUtils } from '../lib-doge'
+import { DashPaymentsConfig, BaseDashPaymentsConfig, DashPaymentsUtils } from '../lib-dash'
 
 // TODO ^
 
@@ -24,7 +25,8 @@ export type CoinPaymentsUtilsClasses = {
   ETH: EthereumPaymentsUtils
   LTC: LitecoinPaymentsUtils
   // BCH: BitcoinCashPaymentsUtils;
-  DOGE: DogePaymentsUtils
+  DOGE: DogePaymentsUtils,
+  DASH: DashPaymentsUtils,
 }
 
 export const basePaymentsConfigCodecs = {
@@ -36,6 +38,7 @@ export const basePaymentsConfigCodecs = {
   LTC: BaseLitecoinPaymentsConfig,
   // BCH: BaseBitcoinCashPaymentsConfig,
   DOGE: BaseDogePaymentsConfig,
+  DASH: BaseDashPaymentsConfig,
 }
 
 export const CoinPaymentsBaseConfigs = t.type(basePaymentsConfigCodecs, 'CoinPaymentsBaseConfigs')
@@ -50,6 +53,7 @@ export const paymentsConfigCodecs = {
   LTC: LitecoinPaymentsConfig,
   // BCH: BitcoinCashPaymentsConfig,
   DOGE: DogePaymentsConfig,
+  DASH: DashPaymentsConfig,
 }
 export const CoinPaymentsConfigs = t.type(paymentsConfigCodecs, 'CoinPaymentsConfigs')
 export type CoinPaymentsConfigs = t.TypeOf<typeof CoinPaymentsConfigs>

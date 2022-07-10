@@ -39,6 +39,7 @@ const lib_litecoin_1 = require("../lib-litecoin");
 //   BitcoinCashPaymentsUtils
 // } from '@bitaccess/coinlib-bitcoin-cash';
 const lib_doge_1 = require("../lib-doge");
+const lib_dash_1 = require("../lib-dash");
 exports.basePaymentsConfigCodecs = {
     // TRX: BaseTronPaymentsConfig,
     // XRP: BaseRipplePaymentsConfig,
@@ -48,6 +49,7 @@ exports.basePaymentsConfigCodecs = {
     LTC: lib_litecoin_1.BaseLitecoinPaymentsConfig,
     // BCH: BaseBitcoinCashPaymentsConfig,
     DOGE: lib_doge_1.BaseDogePaymentsConfig,
+    DASH: lib_dash_1.BaseDashPaymentsConfig,
 };
 exports.CoinPaymentsBaseConfigs = t.type(exports.basePaymentsConfigCodecs, 'CoinPaymentsBaseConfigs');
 exports.paymentsConfigCodecs = {
@@ -59,6 +61,7 @@ exports.paymentsConfigCodecs = {
     LTC: lib_litecoin_1.LitecoinPaymentsConfig,
     // BCH: BitcoinCashPaymentsConfig,
     DOGE: lib_doge_1.DogePaymentsConfig,
+    DASH: lib_dash_1.DashPaymentsConfig,
 };
 exports.CoinPaymentsConfigs = t.type(exports.paymentsConfigCodecs, 'CoinPaymentsConfigs');
 exports.SupportedCoinPaymentsSymbol = t.keyof(exports.paymentsConfigCodecs, 'SupportedCoinPaymentsSymbol');

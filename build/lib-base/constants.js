@@ -9,6 +9,7 @@ const lib_ethereum_1 = require("../lib-ethereum");
 const lib_litecoin_1 = require("../lib-litecoin");
 // import { BitcoinCashPaymentsFactory } from '../coinlib-bitcoin-cash'
 const lib_doge_1 = require("../lib-doge");
+const lib_dash_1 = require("../lib-dash");
 const utils_1 = require("./utils");
 // TODO ^
 exports.PAYMENTS_FACTORIES = {
@@ -20,6 +21,7 @@ exports.PAYMENTS_FACTORIES = {
     LTC: new lib_litecoin_1.LitecoinPaymentsFactory(),
     // BCH: new BitcoinCashPaymentsFactory(),
     DOGE: new lib_doge_1.DogePaymentsFactory(),
+    DASH: new lib_dash_1.DashPaymentsFactory(),
 };
 exports.SUPPORTED_NETWORK_SYMBOLS = (0, utils_1.keysOf)(exports.PAYMENTS_FACTORIES);
 //# sourceMappingURL=constants.js.map

@@ -6,6 +6,7 @@ import { EthereumPaymentsFactory } from '../lib-ethereum'
 import { LitecoinPaymentsFactory } from '../lib-litecoin'
 // import { BitcoinCashPaymentsFactory } from '../coinlib-bitcoin-cash'
 import { DogePaymentsFactory } from '../lib-doge'
+import { DashPaymentsFactory } from '../lib-dash'
 
 import { keysOf } from './utils'
 // TODO ^
@@ -18,6 +19,7 @@ export const PAYMENTS_FACTORIES = {
   LTC: new LitecoinPaymentsFactory(),
   // BCH: new BitcoinCashPaymentsFactory(),
   DOGE: new DogePaymentsFactory(),
+  DASH: new DashPaymentsFactory(),
 }
 
 export const SUPPORTED_NETWORK_SYMBOLS = keysOf(PAYMENTS_FACTORIES)

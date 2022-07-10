@@ -3,11 +3,13 @@ import { BitcoinPaymentsUtils } from '../lib-bitcoin';
 import { EthereumPaymentsUtils } from '../lib-ethereum';
 import { LitecoinPaymentsUtils } from '../lib-litecoin';
 import { DogePaymentsUtils } from '../lib-doge';
+import { DashPaymentsUtils } from '../lib-dash';
 export declare type CoinPaymentsUtilsClasses = {
     BTC: BitcoinPaymentsUtils;
     ETH: EthereumPaymentsUtils;
     LTC: LitecoinPaymentsUtils;
     DOGE: DogePaymentsUtils;
+    DASH: DashPaymentsUtils;
 };
 export declare const basePaymentsConfigCodecs: {
     BTC: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
@@ -89,6 +91,26 @@ export declare const basePaymentsConfigCodecs: {
         minChange: t.StringC;
         maximumFeeRate: t.NumberC;
     }>]>;
+    DASH: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>;
 };
 export declare const CoinPaymentsBaseConfigs: t.TypeC<{
     BTC: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
@@ -151,6 +173,26 @@ export declare const CoinPaymentsBaseConfigs: t.TypeC<{
         maximumFeeRate: t.NumberC;
     }>]>;
     DOGE: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>;
+    DASH: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
         network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
         logger: import("../ts-common").LoggerC;
     }>, t.PartialC<{
@@ -619,6 +661,125 @@ export declare const paymentsConfigCodecs: {
     }>, t.PartialC<{
         addressType: t.Type<import("../lib-doge").AddressType.MultisigLegacy, import("../lib-doge").AddressType.MultisigLegacy, unknown>;
     }>]>]>;
+    DASH: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        hdKey: t.StringC;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        derivationPath: t.StringC;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        m: t.NumberC;
+        signers: t.ArrayC<t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            hdKey: t.StringC;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+            derivationPath: t.StringC;
+        }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        }>]>]>>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.MultisigLegacy, import("../lib-dash").AddressType.MultisigLegacy, unknown>;
+    }>]>]>;
 };
 export declare const CoinPaymentsConfigs: t.TypeC<{
     BTC: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
@@ -1066,6 +1227,125 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         }>]>]>>;
     }>, t.PartialC<{
         addressType: t.Type<import("../lib-doge").AddressType.MultisigLegacy, import("../lib-doge").AddressType.MultisigLegacy, unknown>;
+    }>]>]>;
+    DASH: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        hdKey: t.StringC;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        derivationPath: t.StringC;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        m: t.NumberC;
+        signers: t.ArrayC<t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            hdKey: t.StringC;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+            derivationPath: t.StringC;
+        }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        }>]>]>>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.MultisigLegacy, import("../lib-dash").AddressType.MultisigLegacy, unknown>;
     }>]>]>;
 }>;
 export declare type CoinPaymentsConfigs = t.TypeOf<typeof CoinPaymentsConfigs>;
@@ -1515,6 +1795,125 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         }>]>]>>;
     }>, t.PartialC<{
         addressType: t.Type<import("../lib-doge").AddressType.MultisigLegacy, import("../lib-doge").AddressType.MultisigLegacy, unknown>;
+    }>]>]>;
+    DASH: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        hdKey: t.StringC;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        derivationPath: t.StringC;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+    }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+        network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+        logger: import("../ts-common").LoggerC;
+    }>, t.PartialC<{
+        server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+        api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+    }>]>, t.PartialC<{
+        blockcypherToken: t.StringC;
+        feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+    }>]>, t.PartialC<{
+        minTxFee: t.TypeC<{
+            feeRate: t.StringC;
+            feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+        }>;
+        dustThreshold: t.NumberC;
+        networkMinRelayFee: t.NumberC;
+        targetUtxoPoolSize: t.NumberC;
+        minChange: t.StringC;
+        maximumFeeRate: t.NumberC;
+    }>]>, t.TypeC<{
+        m: t.NumberC;
+        signers: t.ArrayC<t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            hdKey: t.StringC;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+            derivationPath: t.StringC;
+        }>]>, t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
+            network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
+            logger: import("../ts-common").LoggerC;
+        }>, t.PartialC<{
+            server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
+            api: t.Type<import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, import("../lib-bitcoin/bitcoinish").BlockbookServerAPI, unknown>;
+        }>]>, t.PartialC<{
+            blockcypherToken: t.StringC;
+            feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
+        }>]>, t.PartialC<{
+            minTxFee: t.TypeC<{
+                feeRate: t.StringC;
+                feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
+            }>;
+            dustThreshold: t.NumberC;
+            networkMinRelayFee: t.NumberC;
+            targetUtxoPoolSize: t.NumberC;
+            minChange: t.StringC;
+            maximumFeeRate: t.NumberC;
+        }>]>, t.TypeC<{
+            keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
+        }>, t.PartialC<{
+            addressType: t.Type<import("../lib-dash").AddressType.Legacy, import("../lib-dash").AddressType.Legacy, unknown>;
+        }>]>]>>;
+    }>, t.PartialC<{
+        addressType: t.Type<import("../lib-dash").AddressType.MultisigLegacy, import("../lib-dash").AddressType.MultisigLegacy, unknown>;
     }>]>]>;
 }>;
 export declare type SupportedCoinPaymentsSymbol = t.TypeOf<typeof SupportedCoinPaymentsSymbol>;
