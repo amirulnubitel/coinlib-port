@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseDashPayments = void 0;
 const bitcoin = __importStar(require("bitcoinjs-lib"));
+const lib_common_1 = require("../lib-common");
 const lib_bitcoin_1 = require("../lib-bitcoin");
 const utils_1 = require("./utils");
 const constants_1 = require("./constants");
@@ -64,7 +65,7 @@ class BaseDashPayments extends lib_bitcoin_1.bitcoinish.BitcoinishPayments {
     }
     async getPsbtInputData(utxo, paymentScript, addressType) {
         var _a, _b, _c, _d, _e;
-        const utx = await this.getApi().getTx(utxo.txid);
+        const utx = await lib_common_1.limiter.schedule(() => this.getApi().getTx(utxo.txid));
         const result = {
             hash: utxo.txid,
             index: utxo.vout,

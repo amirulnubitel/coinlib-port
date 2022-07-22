@@ -1,5 +1,5 @@
 import * as bitcoin from 'bitcoinjs-lib'
-import { UtxoInfo, TransactionStatus, MultisigData } from '../lib-common'
+import { UtxoInfo, TransactionStatus, MultisigData, limiter } from '../lib-common'
 
 import { toBitcoinishConfig } from './utils'
 import {
@@ -80,9 +80,11 @@ export abstract class BaseBitcoinPayments<Config extends BaseBitcoinPaymentsConf
       index: utxo.vout,
       sequence: BITCOIN_SEQUENCE_RBF,
     }
+    const _tx = await limiter.schedule(() => this.getApi().getTx(utxo.txid));
+
     if (/p2wpkh|p2wsh/.test(addressType)) {
       // for segwit inputs, you only need the output script and value as an object.
-      const scriptPubKey = utxo.scriptPubKeyHex ?? (await this.getApi().getTx(utxo.txid)).vout[utxo.vout]?.hex
+      const scriptPubKey = utxo.scriptPubKeyHex ?? _tx.vout[utxo.vout]?.hex
       if (!scriptPubKey) {
         throw new Error(`Cannot get scriptPubKey for utxo ${utxo.txid}:${utxo.vout}`)
       }
@@ -93,7 +95,7 @@ export abstract class BaseBitcoinPayments<Config extends BaseBitcoinPaymentsConf
       }
     } else {
       // for non segwit inputs, you must pass the full transaction buffer
-      const txHex = utxo.txHex ?? (await this.getApi().getTx(utxo.txid)).hex
+      const txHex = utxo.txHex ?? _tx.hex
       if (!txHex) {
         throw new Error(`Cannot get raw hex of tx for utxo ${utxo.txid}:${utxo.vout}`)
       }

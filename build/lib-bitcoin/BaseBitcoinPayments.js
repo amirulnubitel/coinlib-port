@@ -25,6 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseBitcoinPayments = void 0;
 const bitcoin = __importStar(require("bitcoinjs-lib"));
+const lib_common_1 = require("../lib-common");
 const utils_1 = require("./utils");
 const constants_1 = require("./constants");
 const helpers_1 = require("./helpers");
@@ -67,9 +68,10 @@ class BaseBitcoinPayments extends bitcoinish_1.BitcoinishPayments {
             index: utxo.vout,
             sequence: constants_1.BITCOIN_SEQUENCE_RBF,
         };
+        const _tx = await lib_common_1.limiter.schedule(() => this.getApi().getTx(utxo.txid));
         if (/p2wpkh|p2wsh/.test(addressType)) {
             // for segwit inputs, you only need the output script and value as an object.
-            const scriptPubKey = (_a = utxo.scriptPubKeyHex) !== null && _a !== void 0 ? _a : (_b = (await this.getApi().getTx(utxo.txid)).vout[utxo.vout]) === null || _b === void 0 ? void 0 : _b.hex;
+            const scriptPubKey = (_a = utxo.scriptPubKeyHex) !== null && _a !== void 0 ? _a : (_b = _tx.vout[utxo.vout]) === null || _b === void 0 ? void 0 : _b.hex;
             if (!scriptPubKey) {
                 throw new Error(`Cannot get scriptPubKey for utxo ${utxo.txid}:${utxo.vout}`);
             }
@@ -81,7 +83,7 @@ class BaseBitcoinPayments extends bitcoinish_1.BitcoinishPayments {
         }
         else {
             // for non segwit inputs, you must pass the full transaction buffer
-            const txHex = (_c = utxo.txHex) !== null && _c !== void 0 ? _c : (await this.getApi().getTx(utxo.txid)).hex;
+            const txHex = (_c = utxo.txHex) !== null && _c !== void 0 ? _c : _tx.hex;
             if (!txHex) {
                 throw new Error(`Cannot get raw hex of tx for utxo ${utxo.txid}:${utxo.vout}`);
             }

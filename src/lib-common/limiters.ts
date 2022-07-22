@@ -10,7 +10,7 @@ const limiter = new Bottleneck({
 limiter.on('failed', async (error, jobInfo) => {
   console.log('Limiter failed: ', JSON.stringify(error))
   if (jobInfo.retryCount < 10) {
-    return RATE_LIMIT + jobInfo.retryCount * 100
+    return RATE_LIMIT + jobInfo.retryCount * 400
   }
 })
 

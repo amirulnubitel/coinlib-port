@@ -1,5 +1,5 @@
 import * as bitcoin from 'bitcoinjs-lib'
-import { UtxoInfo } from '../lib-common'
+import { UtxoInfo, limiter } from '../lib-common'
 import { bitcoinish } from '../lib-bitcoin'
 import { toBitcoinishConfig } from './utils'
 import { BaseLitecoinPaymentsConfig, AddressType, PsbtInputData, LitecoinAddressFormat } from './types'
@@ -62,7 +62,7 @@ export abstract class BaseLitecoinPayments<
     paymentScript: bitcoin.payments.Payment,
     addressType: AddressType,
   ): Promise<PsbtInputData> {
-    const utx = await this.getApi().getTx(utxo.txid)
+    const utx = await limiter.schedule(() => this.getApi().getTx(utxo.txid));
     const result: PsbtInputData = {
       hash: utxo.txid,
       index: utxo.vout,
