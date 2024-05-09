@@ -34,7 +34,7 @@ const NetworkDataWeb3_1 = require("./NetworkDataWeb3");
 class NetworkData {
     constructor(config) {
         var _a;
-        this.etherScanApiKey = (_a = config.etherScanApiKey) !== null && _a !== void 0 ? _a : constants_1.GAS_STATION_URL;
+        this.etherScanApiKey = (_a = config.etherScanApiKey) !== null && _a !== void 0 ? _a : '';
         this.logger = new ts_common_1.DelegateLogger(config.logger, 'NetworkData');
         this.blockBookService = new NetworkDataBlockbook_1.NetworkDataBlockbook({
             ...config.blockBookConfig,

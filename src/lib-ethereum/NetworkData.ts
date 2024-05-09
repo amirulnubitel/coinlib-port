@@ -24,7 +24,7 @@ export class NetworkData {
   private web3Service: NetworkDataWeb3
 
   constructor(config: NetworkDataConfig) {
-    this.etherScanApiKey = config.etherScanApiKey ?? GAS_STATION_URL
+    this.etherScanApiKey = config.etherScanApiKey ?? ''
     this.logger = new DelegateLogger(config.logger, 'NetworkData')
 
     this.blockBookService = new NetworkDataBlockbook({
