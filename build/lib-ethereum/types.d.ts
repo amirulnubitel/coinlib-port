@@ -7,7 +7,7 @@ export declare enum EthereumAddressFormat {
     Checksum = "checksum"
 }
 export declare const EthereumAddressFormatT: t.Type<EthereumAddressFormat, EthereumAddressFormat, unknown>;
-export declare type EthTxType = 'ETHEREUM_TRANSFER' | 'CONTRACT_DEPLOY' | 'TOKEN_SWEEP' | 'TOKEN_TRANSFER';
+export type EthTxType = 'ETHEREUM_TRANSFER' | 'CONTRACT_DEPLOY' | 'TOKEN_SWEEP' | 'TOKEN_TRANSFER';
 export declare const EthereumSignatory: t.TypeC<{
     address: t.StringC;
     keys: t.TypeC<{
@@ -19,7 +19,7 @@ export declare const EthereumSignatory: t.TypeC<{
         xpub: t.StringC;
     }>;
 }>;
-export declare type EthereumSignatory = t.TypeOf<typeof EthereumSignatory>;
+export type EthereumSignatory = t.TypeOf<typeof EthereumSignatory>;
 export declare const EthereumPaymentsUtilsConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -28,7 +28,7 @@ export declare const EthereumPaymentsUtilsConfig: t.IntersectionC<[t.PartialC<{
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -37,7 +37,7 @@ export declare const EthereumPaymentsUtilsConfig: t.IntersectionC<[t.PartialC<{
     tokenAddress: t.StringC;
     requestTimeoutMs: t.UnionC<[t.NumberC, t.UndefinedC]>;
 }>]>;
-export declare type EthereumPaymentsUtilsConfig = t.TypeOf<typeof EthereumPaymentsUtilsConfig>;
+export type EthereumPaymentsUtilsConfig = t.TypeOf<typeof EthereumPaymentsUtilsConfig>;
 export declare const BaseEthereumPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -46,7 +46,7 @@ export declare const BaseEthereumPaymentsConfig: t.IntersectionC<[t.Intersection
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -57,7 +57,7 @@ export declare const BaseEthereumPaymentsConfig: t.IntersectionC<[t.Intersection
 }>]>, t.PartialC<{
     depositKeyIndex: t.UnionC<[t.NumberC, t.UndefinedC]>;
 }>]>;
-export declare type BaseEthereumPaymentsConfig = t.TypeOf<typeof BaseEthereumPaymentsConfig>;
+export type BaseEthereumPaymentsConfig = t.TypeOf<typeof BaseEthereumPaymentsConfig>;
 export declare const HdEthereumPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -66,7 +66,7 @@ export declare const HdEthereumPaymentsConfig: t.IntersectionC<[t.IntersectionC<
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -79,7 +79,7 @@ export declare const HdEthereumPaymentsConfig: t.IntersectionC<[t.IntersectionC<
 }>]>, t.TypeC<{
     hdKey: t.StringC;
 }>]>;
-export declare type HdEthereumPaymentsConfig = t.TypeOf<typeof HdEthereumPaymentsConfig>;
+export type HdEthereumPaymentsConfig = t.TypeOf<typeof HdEthereumPaymentsConfig>;
 export declare const KeyPairEthereumPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -88,7 +88,7 @@ export declare const KeyPairEthereumPaymentsConfig: t.IntersectionC<[t.Intersect
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -101,7 +101,7 @@ export declare const KeyPairEthereumPaymentsConfig: t.IntersectionC<[t.Intersect
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>;
-export declare type KeyPairEthereumPaymentsConfig = t.TypeOf<typeof KeyPairEthereumPaymentsConfig>;
+export type KeyPairEthereumPaymentsConfig = t.TypeOf<typeof KeyPairEthereumPaymentsConfig>;
 export declare const BaseErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -110,7 +110,7 @@ export declare const BaseErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -125,7 +125,7 @@ export declare const BaseErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[
 }>, t.PartialC<{
     masterAddress: t.StringC;
 }>]>;
-export declare type BaseErc20PaymentsConfig = t.TypeOf<typeof BaseErc20PaymentsConfig>;
+export type BaseErc20PaymentsConfig = t.TypeOf<typeof BaseErc20PaymentsConfig>;
 export declare const HdErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -134,7 +134,7 @@ export declare const HdErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -151,7 +151,7 @@ export declare const HdErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.
 }>]>, t.TypeC<{
     hdKey: t.StringC;
 }>]>;
-export declare type HdErc20PaymentsConfig = t.TypeOf<typeof HdErc20PaymentsConfig>;
+export type HdErc20PaymentsConfig = t.TypeOf<typeof HdErc20PaymentsConfig>;
 export declare const KeyPairErc20PaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -160,7 +160,7 @@ export declare const KeyPairErc20PaymentsConfig: t.IntersectionC<[t.Intersection
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -177,7 +177,7 @@ export declare const KeyPairErc20PaymentsConfig: t.IntersectionC<[t.Intersection
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>;
-export declare type KeyPairErc20PaymentsConfig = t.TypeOf<typeof KeyPairErc20PaymentsConfig>;
+export type KeyPairErc20PaymentsConfig = t.TypeOf<typeof KeyPairErc20PaymentsConfig>;
 export declare const Erc20PaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -186,7 +186,7 @@ export declare const Erc20PaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersect
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -210,7 +210,7 @@ export declare const Erc20PaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersect
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -227,7 +227,7 @@ export declare const Erc20PaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersect
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>]>;
-export declare type Erc20PaymentsConfig = t.TypeOf<typeof Erc20PaymentsConfig>;
+export type Erc20PaymentsConfig = t.TypeOf<typeof Erc20PaymentsConfig>;
 export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -236,7 +236,7 @@ export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -256,7 +256,7 @@ export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -276,7 +276,7 @@ export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -300,7 +300,7 @@ export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -317,7 +317,7 @@ export declare const EthereumPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>]>;
-export declare type EthereumPaymentsConfig = t.TypeOf<typeof EthereumPaymentsConfig>;
+export type EthereumPaymentsConfig = t.TypeOf<typeof EthereumPaymentsConfig>;
 export declare const EthereumTransactionOptions: t.IntersectionC<[t.IntersectionC<[t.UnionC<[t.IntersectionC<[t.TypeC<{
     feeRate: t.StringC;
     feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
@@ -371,7 +371,7 @@ export declare const EthereumTransactionOptions: t.IntersectionC<[t.Intersection
     gas: t.UnionC<[t.StringC, t.NumberC, import("../ts-common").BigNumberC]>;
     proxyAddress: t.StringC;
 }>]>;
-export declare type EthereumTransactionOptions = t.TypeOf<typeof EthereumTransactionOptions>;
+export type EthereumTransactionOptions = t.TypeOf<typeof EthereumTransactionOptions>;
 export declare const EthereumUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -454,7 +454,7 @@ export declare const EthereumUnsignedTransaction: t.IntersectionC<[t.Intersectio
     amount: t.StringC;
     fee: t.StringC;
 }>]>;
-export declare type EthereumUnsignedTransaction = t.TypeOf<typeof EthereumUnsignedTransaction>;
+export type EthereumUnsignedTransaction = t.TypeOf<typeof EthereumUnsignedTransaction>;
 export declare const EthereumSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -541,7 +541,7 @@ export declare const EthereumSignedTransaction: t.IntersectionC<[t.IntersectionC
         hex: t.StringC;
     }>;
 }>]>;
-export declare type EthereumSignedTransaction = t.TypeOf<typeof EthereumSignedTransaction>;
+export type EthereumSignedTransaction = t.TypeOf<typeof EthereumSignedTransaction>;
 export declare const EthereumTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -609,11 +609,11 @@ export declare const EthereumTransactionInfo: t.IntersectionC<[t.IntersectionC<[
     currentBlockNumber: t.UnionC<[t.StringC, t.NumberC]>;
     confirmationNumber: t.UnionC<[t.StringC, t.NumberC]>;
 }>]>;
-export declare type EthereumTransactionInfo = t.TypeOf<typeof EthereumTransactionInfo>;
+export type EthereumTransactionInfo = t.TypeOf<typeof EthereumTransactionInfo>;
 export declare const EthereumBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
-export declare type EthereumBroadcastResult = t.TypeOf<typeof EthereumBroadcastResult>;
+export type EthereumBroadcastResult = t.TypeOf<typeof EthereumBroadcastResult>;
 export declare const EthereumResolvedFeeOption: t.IntersectionC<[t.TypeC<{
     targetFeeLevel: t.Type<import("../lib-common").FeeLevel, import("../lib-common").FeeLevel, unknown>;
     targetFeeRate: t.StringC;
@@ -623,7 +623,7 @@ export declare const EthereumResolvedFeeOption: t.IntersectionC<[t.TypeC<{
 }>, t.TypeC<{
     gasPrice: t.StringC;
 }>]>;
-export declare type EthereumResolvedFeeOption = t.TypeOf<typeof EthereumResolvedFeeOption>;
+export type EthereumResolvedFeeOption = t.TypeOf<typeof EthereumResolvedFeeOption>;
 export declare const EthereumFeeOption: t.IntersectionC<[t.UnionC<[t.IntersectionC<[t.TypeC<{
     feeRate: t.StringC;
     feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
@@ -634,7 +634,7 @@ export declare const EthereumFeeOption: t.IntersectionC<[t.UnionC<[t.Intersectio
 }>]>, t.PartialC<{
     isSweep: t.BooleanC;
 }>]>;
-export declare type EthereumFeeOption = t.TypeOf<typeof EthereumFeeOption>;
+export type EthereumFeeOption = t.TypeOf<typeof EthereumFeeOption>;
 export declare const EthereumFeeOptionCustom: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     feeRate: t.StringC;
     feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
@@ -643,13 +643,13 @@ export declare const EthereumFeeOptionCustom: t.IntersectionC<[t.IntersectionC<[
 }>]>, t.PartialC<{
     isSweep: t.BooleanC;
 }>]>;
-export declare type EthereumFeeOptionCustom = t.TypeOf<typeof EthereumFeeOptionCustom>;
+export type EthereumFeeOptionCustom = t.TypeOf<typeof EthereumFeeOptionCustom>;
 export declare const BaseDenominationOptions: t.IntersectionC<[t.ObjectC, t.PartialC<{
     rounding: t.UnionC<[t.LiteralC<1>, t.LiteralC<2>, t.LiteralC<3>, t.LiteralC<4>, t.LiteralC<5>, t.LiteralC<6>, t.LiteralC<7>, t.LiteralC<8>]>;
 }>]>;
-export declare type BaseDenominationOptions = t.TypeOf<typeof BaseDenominationOptions>;
+export type BaseDenominationOptions = t.TypeOf<typeof BaseDenominationOptions>;
 export declare const EthereumBlockbookConfigServer: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
-export declare type EthereumBlockbookConfigServer = t.TypeOf<typeof EthereumBlockbookConfigServer>;
+export type EthereumBlockbookConfigServer = t.TypeOf<typeof EthereumBlockbookConfigServer>;
 export declare const EthereumBlockbookConnectedConfig: t.IntersectionC<[t.TypeC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     logger: import("../ts-common").LoggerC;
@@ -658,7 +658,7 @@ export declare const EthereumBlockbookConnectedConfig: t.IntersectionC<[t.TypeC<
     api: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
     requestTimeoutMs: t.NumberC;
 }>]>;
-export declare type EthereumBlockbookConnectedConfig = t.TypeOf<typeof EthereumBlockbookConnectedConfig>;
+export type EthereumBlockbookConnectedConfig = t.TypeOf<typeof EthereumBlockbookConnectedConfig>;
 export declare const EthereumWeb3Config: t.IntersectionC<[t.TypeC<{
     web3: t.Type<Web3, Web3, unknown>;
 }>, t.PartialC<{
@@ -667,7 +667,7 @@ export declare const EthereumWeb3Config: t.IntersectionC<[t.TypeC<{
     providerOptions: t.AnyC;
     logger: import("../ts-common").LoggerC;
 }>]>;
-export declare type EthereumWeb3Config = t.TypeOf<typeof EthereumWeb3Config>;
+export type EthereumWeb3Config = t.TypeOf<typeof EthereumWeb3Config>;
 export declare const BlockBookConfig: t.IntersectionC<[t.TypeC<{
     nodes: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
 }>, t.PartialC<{
@@ -692,10 +692,10 @@ export declare const NetworkDataConfig: t.IntersectionC<[t.TypeC<{
 }>, t.PartialC<{
     parityUrl: t.StringC;
     logger: import("../ts-common").LoggerC;
-    gasStationUrl: t.StringC;
+    etherScanApiKey: t.StringC;
     requestTimeoutMs: t.NumberC;
 }>]>;
-export declare type NetworkDataConfig = t.TypeOf<typeof NetworkDataConfig>;
+export type NetworkDataConfig = t.TypeOf<typeof NetworkDataConfig>;
 export declare const EthereumBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -704,7 +704,7 @@ export declare const EthereumBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
     blockbookNode: t.StringC;
     blockbookApi: t.Type<BlockbookEthereum, BlockbookEthereum, unknown>;
-    gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+    etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
     symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
     name: t.UnionC<[t.StringC, t.UndefinedC]>;
     decimals: t.NumberC;
@@ -713,7 +713,7 @@ export declare const EthereumBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     tokenAddress: t.StringC;
     requestTimeoutMs: t.UnionC<[t.NumberC, t.UndefinedC]>;
 }>]>;
-export declare type EthereumBalanceMonitorConfig = EthereumPaymentsUtilsConfig;
+export type EthereumBalanceMonitorConfig = EthereumPaymentsUtilsConfig;
 export declare const EthereumBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     page: t.NumberC;
     totalPages: t.NumberC;
@@ -771,6 +771,7 @@ export declare const EthereumBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -831,6 +832,7 @@ export declare const EthereumBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -893,8 +895,8 @@ export declare const EthereumBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         }>;
     }>]>>;
 }>]>;
-export declare type EthereumBlock = BlockInfoEthereum;
-export declare type UnitConverters = ReturnType<typeof createUnitConverters>;
+export type EthereumBlock = BlockInfoEthereum;
+export type UnitConverters = ReturnType<typeof createUnitConverters>;
 export interface EthereumNodesConnection {
     web3: Web3;
     blockbookApi: BlockbookEthereum;

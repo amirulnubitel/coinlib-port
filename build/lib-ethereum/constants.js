@@ -23,9 +23,9 @@ exports.TOKEN_TRANSFER_COST = 300000;
 exports.GAS_ESTIMATE_MULTIPLIER = 1.5;
 exports.MIN_SWEEPABLE_WEI = String(21000 * 10e9); // 21k gas @ 10Gwei: anything below this is dust ($0.2 @ $1200/ETH)
 exports.GAS_STATION_FEE_SPEED = {
-    [lib_common_1.FeeLevel.Low]: 'safeLow',
-    [lib_common_1.FeeLevel.Medium]: 'average',
-    [lib_common_1.FeeLevel.High]: 'fast',
+    [lib_common_1.FeeLevel.Low]: 'SafeGasPrice',
+    [lib_common_1.FeeLevel.Medium]: 'ProposeGasPrice',
+    [lib_common_1.FeeLevel.High]: 'FastGasPrice',
 };
 exports.MAXIMUM_GAS = {
     ETHEREUM_TRANSFER: exports.ETHEREUM_TRANSFER_COST,
@@ -44,7 +44,7 @@ exports.PUBLIC_CONFIG_OMIT_FIELDS = [
     'logger',
     'fullNode',
     'parityNode',
-    'gasStation',
+    'etherScanApiKey',
     'keyPairs',
     'hdKey',
     'providerOptions',

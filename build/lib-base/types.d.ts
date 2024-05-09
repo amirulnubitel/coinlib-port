@@ -4,7 +4,7 @@ import { EthereumPaymentsUtils } from '../lib-ethereum';
 import { LitecoinPaymentsUtils } from '../lib-litecoin';
 import { DogePaymentsUtils } from '../lib-doge';
 import { DashPaymentsUtils } from '../lib-dash';
-export declare type CoinPaymentsUtilsClasses = {
+export type CoinPaymentsUtilsClasses = {
     BTC: BitcoinPaymentsUtils;
     ETH: EthereumPaymentsUtils;
     LTC: LitecoinPaymentsUtils;
@@ -39,7 +39,7 @@ export declare const basePaymentsConfigCodecs: {
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -140,7 +140,7 @@ export declare const CoinPaymentsBaseConfigs: t.TypeC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -213,7 +213,7 @@ export declare const CoinPaymentsBaseConfigs: t.TypeC<{
         maximumFeeRate: t.NumberC;
     }>]>;
 }>;
-export declare type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>;
+export type CoinPaymentsBaseConfigs = t.TypeOf<typeof CoinPaymentsBaseConfigs>;
 export declare const paymentsConfigCodecs: {
     BTC: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
         network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
@@ -337,7 +337,7 @@ export declare const paymentsConfigCodecs: {
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -357,7 +357,7 @@ export declare const paymentsConfigCodecs: {
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -377,7 +377,7 @@ export declare const paymentsConfigCodecs: {
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -401,7 +401,7 @@ export declare const paymentsConfigCodecs: {
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -904,7 +904,7 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -924,7 +924,7 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -944,7 +944,7 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -968,7 +968,7 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -1348,7 +1348,7 @@ export declare const CoinPaymentsConfigs: t.TypeC<{
         addressType: t.Type<import("../lib-dash").AddressType.MultisigLegacy, import("../lib-dash").AddressType.MultisigLegacy, unknown>;
     }>]>]>;
 }>;
-export declare type CoinPaymentsConfigs = t.TypeOf<typeof CoinPaymentsConfigs>;
+export type CoinPaymentsConfigs = t.TypeOf<typeof CoinPaymentsConfigs>;
 export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
     BTC: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
         network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
@@ -1472,7 +1472,7 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -1492,7 +1492,7 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -1512,7 +1512,7 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -1536,7 +1536,7 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         parityNode: t.UnionC<[t.StringC, t.UndefinedC]>;
         blockbookNode: t.StringC;
         blockbookApi: t.Type<import("blockbook-client").BlockbookEthereum, import("blockbook-client").BlockbookEthereum, unknown>;
-        gasStation: t.UnionC<[t.StringC, t.UndefinedC]>;
+        etherScanApiKey: t.UnionC<[t.StringC, t.UndefinedC]>;
         symbol: t.UnionC<[t.StringC, t.UndefinedC]>;
         name: t.UnionC<[t.StringC, t.UndefinedC]>;
         decimals: t.NumberC;
@@ -1916,8 +1916,8 @@ export declare const SupportedCoinPaymentsSymbol: t.KeyofC<{
         addressType: t.Type<import("../lib-dash").AddressType.MultisigLegacy, import("../lib-dash").AddressType.MultisigLegacy, unknown>;
     }>]>]>;
 }>;
-export declare type SupportedCoinPaymentsSymbol = t.TypeOf<typeof SupportedCoinPaymentsSymbol>;
-export declare type CoinPaymentsPartialConfigs = {
+export type SupportedCoinPaymentsSymbol = t.TypeOf<typeof SupportedCoinPaymentsSymbol>;
+export type CoinPaymentsPartialConfigs = {
     [T in SupportedCoinPaymentsSymbol]?: Partial<CoinPaymentsConfigs[T]>;
 };
 export declare const CoinPaymentsPartialConfigs: t.Type<CoinPaymentsPartialConfigs, CoinPaymentsPartialConfigs, unknown>;
@@ -1926,4 +1926,4 @@ export declare const CoinPaymentsConfig: t.IntersectionC<[t.Type<CoinPaymentsPar
     logger: import("../ts-common").LoggerC;
     seed: t.StringC;
 }>]>;
-export declare type CoinPaymentsConfig = t.TypeOf<typeof CoinPaymentsConfig>;
+export type CoinPaymentsConfig = t.TypeOf<typeof CoinPaymentsConfig>;

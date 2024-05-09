@@ -2,10 +2,10 @@ import * as t from 'io-ts';
 import { CreateTransactionOptions, Payport, FromTo } from '../lib-common';
 import { FormattedTransactionType as RippleTransaction, RippleAPI } from 'ripple-lib';
 import { KeyPair } from 'ripple-lib/dist/npm/transaction/types';
-declare type PromiseValue<T> = T extends Promise<infer X> ? X : never;
-declare type RippleLedger = PromiseValue<ReturnType<RippleAPI['getLedger']>>;
+type PromiseValue<T> = T extends Promise<infer X> ? X : never;
+type RippleLedger = PromiseValue<ReturnType<RippleAPI['getLedger']>>;
 export { RippleTransaction, RippleLedger, CreateTransactionOptions };
-export declare type TransactionInfoRaw = RippleTransaction & {
+export type TransactionInfoRaw = RippleTransaction & {
     currentLedger: RippleLedger;
 };
 export declare class RippleServerAPI extends RippleAPI {
@@ -17,7 +17,7 @@ export declare const BaseRippleConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.NullC]>;
     api: t.Type<RippleServerAPI, RippleServerAPI, unknown>;
 }>]>;
-export declare type BaseRippleConfig = t.TypeOf<typeof BaseRippleConfig>;
+export type BaseRippleConfig = t.TypeOf<typeof BaseRippleConfig>;
 export declare const RippleBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -25,7 +25,7 @@ export declare const RippleBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.NullC]>;
     api: t.Type<RippleServerAPI, RippleServerAPI, unknown>;
 }>]>;
-export declare type RippleBalanceMonitorConfig = t.TypeOf<typeof RippleBalanceMonitorConfig>;
+export type RippleBalanceMonitorConfig = t.TypeOf<typeof RippleBalanceMonitorConfig>;
 export declare const BaseRipplePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -35,7 +35,7 @@ export declare const BaseRipplePaymentsConfig: t.IntersectionC<[t.IntersectionC<
 }>]>, t.PartialC<{
     maxLedgerVersionOffset: t.NumberC;
 }>]>;
-export declare type BaseRipplePaymentsConfig = t.TypeOf<typeof BaseRipplePaymentsConfig>;
+export type BaseRipplePaymentsConfig = t.TypeOf<typeof BaseRipplePaymentsConfig>;
 export declare const HdRipplePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -47,17 +47,17 @@ export declare const HdRipplePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t
 }>]>, t.TypeC<{
     hdKey: t.StringC;
 }>]>;
-export declare type HdRipplePaymentsConfig = t.TypeOf<typeof HdRipplePaymentsConfig>;
+export type HdRipplePaymentsConfig = t.TypeOf<typeof HdRipplePaymentsConfig>;
 export declare const RippleKeyPair: t.TypeC<{
     publicKey: t.StringC;
     privateKey: t.StringC;
 }>;
-export declare type RippleKeyPair = t.TypeOf<typeof RippleKeyPair>;
+export type RippleKeyPair = t.TypeOf<typeof RippleKeyPair>;
 export declare const RippleSecretPair: t.TypeC<{
     address: t.StringC;
     secret: t.StringC;
 }>;
-export declare type RippleSecretPair = t.TypeOf<typeof RippleSecretPair>;
+export type RippleSecretPair = t.TypeOf<typeof RippleSecretPair>;
 /**
  * address, or secret+address, or public+private key
  */
@@ -68,7 +68,7 @@ export declare const RippleAccountConfig: t.UnionC<[t.StringC, t.TypeC<{
     publicKey: t.StringC;
     privateKey: t.StringC;
 }>]>;
-export declare type RippleAccountConfig = t.TypeOf<typeof RippleAccountConfig>;
+export type RippleAccountConfig = t.TypeOf<typeof RippleAccountConfig>;
 export declare const AccountRipplePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -93,7 +93,7 @@ export declare const AccountRipplePaymentsConfig: t.IntersectionC<[t.Intersectio
         privateKey: t.StringC;
     }>]>;
 }>]>;
-export declare type AccountRipplePaymentsConfig = t.TypeOf<typeof AccountRipplePaymentsConfig>;
+export type AccountRipplePaymentsConfig = t.TypeOf<typeof AccountRipplePaymentsConfig>;
 export declare const RipplePaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -128,7 +128,7 @@ export declare const RipplePaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersec
         privateKey: t.StringC;
     }>]>;
 }>]>]>;
-export declare type RipplePaymentsConfig = t.TypeOf<typeof RipplePaymentsConfig>;
+export type RipplePaymentsConfig = t.TypeOf<typeof RipplePaymentsConfig>;
 export declare const RippleUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -211,7 +211,7 @@ export declare const RippleUnsignedTransaction: t.IntersectionC<[t.IntersectionC
     amount: t.StringC;
     fee: t.StringC;
 }>]>;
-export declare type RippleUnsignedTransaction = t.TypeOf<typeof RippleUnsignedTransaction>;
+export type RippleUnsignedTransaction = t.TypeOf<typeof RippleUnsignedTransaction>;
 export declare const RippleSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -296,7 +296,7 @@ export declare const RippleSignedTransaction: t.IntersectionC<[t.IntersectionC<[
 }>]>, t.TypeC<{
     id: t.StringC;
 }>]>;
-export declare type RippleSignedTransaction = t.TypeOf<typeof RippleSignedTransaction>;
+export type RippleSignedTransaction = t.TypeOf<typeof RippleSignedTransaction>;
 export declare const RippleTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -366,14 +366,14 @@ export declare const RippleTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.
 }>]>, t.TypeC<{
     confirmationNumber: t.UnionC<[t.StringC, t.NullC]>;
 }>]>;
-export declare type RippleTransactionInfo = t.TypeOf<typeof RippleTransactionInfo>;
+export type RippleTransactionInfo = t.TypeOf<typeof RippleTransactionInfo>;
 export declare const RippleBroadcastResult: t.IntersectionC<[t.TypeC<{
     id: t.StringC;
 }>, t.TypeC<{
     rebroadcast: t.BooleanC;
     data: t.ObjectC;
 }>]>;
-export declare type RippleBroadcastResult = t.TypeOf<typeof RippleBroadcastResult>;
+export type RippleBroadcastResult = t.TypeOf<typeof RippleBroadcastResult>;
 export declare const RippleCreateTransactionOptions: t.IntersectionC<[t.IntersectionC<[t.UnionC<[t.IntersectionC<[t.TypeC<{
     feeRate: t.StringC;
     feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
@@ -425,12 +425,12 @@ export declare const RippleCreateTransactionOptions: t.IntersectionC<[t.Intersec
 }>]>, t.PartialC<{
     maxLedgerVersionOffset: t.NumberC;
 }>]>;
-export declare type RippleCreateTransactionOptions = t.TypeOf<typeof RippleCreateTransactionOptions>;
-export declare type FromToWithPayport = FromTo & {
+export type RippleCreateTransactionOptions = t.TypeOf<typeof RippleCreateTransactionOptions>;
+export type FromToWithPayport = FromTo & {
     fromPayport: Payport;
     toPayport: Payport;
 };
-export declare type RippleSignatory = {
+export type RippleSignatory = {
     address: string;
     secret: string | KeyPair;
 };

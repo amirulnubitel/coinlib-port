@@ -27,9 +27,9 @@ export const GAS_ESTIMATE_MULTIPLIER = 1.5
 export const MIN_SWEEPABLE_WEI = String(21000 * 10e9) // 21k gas @ 10Gwei: anything below this is dust ($0.2 @ $1200/ETH)
 
 export const GAS_STATION_FEE_SPEED = {
-  [FeeLevel.Low]: 'safeLow',
-  [FeeLevel.Medium]: 'average',
-  [FeeLevel.High]: 'fast',
+  [FeeLevel.Low]: 'SafeGasPrice',
+  [FeeLevel.Medium]: 'ProposeGasPrice',
+  [FeeLevel.High]: 'FastGasPrice',
 }
 export const MAXIMUM_GAS: { [a in EthTxType]: number } = {
   ETHEREUM_TRANSFER: ETHEREUM_TRANSFER_COST,
@@ -65,7 +65,7 @@ export const PUBLIC_CONFIG_OMIT_FIELDS = [
   'logger',
   'fullNode',
   'parityNode',
-  'gasStation',
+  'etherScanApiKey',
   'keyPairs',
   'hdKey',
   'providerOptions',

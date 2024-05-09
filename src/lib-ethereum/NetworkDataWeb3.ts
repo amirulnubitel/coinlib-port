@@ -33,7 +33,7 @@ export class NetworkDataWeb3 implements EthereumNetworkDataProvider {
     this.server = config.fullNode || null
 
     let provider: any
-    provider = new Web3.providers.HttpProvider('https://main-rpc.linkpool.io/', config.providerOptions)
+    provider = new Web3.providers.HttpProvider('https://eth.drpc.org/', config.providerOptions)
     this.web3 = new Web3(provider)
     // if (config.web3) {
     //   this.web3 = config.web3

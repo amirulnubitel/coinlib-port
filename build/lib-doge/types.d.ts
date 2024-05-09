@@ -9,7 +9,7 @@ export interface PsbtTxInput extends TransactionInput {
 export interface PsbtTxOutput extends TransactionOutput {
     address: string | undefined;
 }
-export declare type BitcoinjsKeyPair = BitcoinjsSigner & {
+export type BitcoinjsKeyPair = BitcoinjsSigner & {
     privateKey?: Buffer;
     toWIF(): string;
 };
@@ -23,18 +23,18 @@ export declare const AddressTypeT: t.Type<AddressType, AddressType, unknown>;
 declare const SinglesigAddressTypeT: t.KeyofC<{
     p2pkh: any;
 }>;
-export declare type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
+export type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
 export declare const SinglesigAddressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 declare const MultisigAddressTypeT: t.KeyofC<{
     "p2sh-p2ms": any;
 }>;
-export declare type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
+export type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
 export declare const MultisigAddressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 export declare const BitcoinishTxOutput: t.TypeC<{
     address: t.StringC;
     value: t.StringC;
 }>;
-export declare type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
+export type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
 export declare const DogeBaseConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -42,7 +42,7 @@ export declare const DogeBaseConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type DogeBaseConfig = t.TypeOf<typeof DogeBaseConfig>;
+export type DogeBaseConfig = t.TypeOf<typeof DogeBaseConfig>;
 export declare const DogeBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -50,7 +50,7 @@ export declare const DogeBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type DogeBalanceMonitorConfig = DogeBaseConfig;
+export type DogeBalanceMonitorConfig = DogeBaseConfig;
 export declare const DogePaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -61,7 +61,7 @@ export declare const DogePaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[
     blockcypherToken: t.StringC;
     feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
 }>]>;
-export declare type DogePaymentsUtilsConfig = t.TypeOf<typeof DogePaymentsUtilsConfig>;
+export type DogePaymentsUtilsConfig = t.TypeOf<typeof DogePaymentsUtilsConfig>;
 export declare const BaseDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -82,7 +82,7 @@ export declare const BaseDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t
     minChange: t.StringC;
     maximumFeeRate: t.NumberC;
 }>]>;
-export declare type BaseDogePaymentsConfig = t.TypeOf<typeof BaseDogePaymentsConfig>;
+export type BaseDogePaymentsConfig = t.TypeOf<typeof BaseDogePaymentsConfig>;
 export declare const HdDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -108,7 +108,7 @@ export declare const HdDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.I
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
     derivationPath: t.StringC;
 }>]>;
-export declare type HdDogePaymentsConfig = t.TypeOf<typeof HdDogePaymentsConfig>;
+export type HdDogePaymentsConfig = t.TypeOf<typeof HdDogePaymentsConfig>;
 export declare const KeyPairDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -133,7 +133,7 @@ export declare const KeyPairDogePaymentsConfig: t.IntersectionC<[t.IntersectionC
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 }>]>;
-export declare type KeyPairDogePaymentsConfig = t.TypeOf<typeof KeyPairDogePaymentsConfig>;
+export type KeyPairDogePaymentsConfig = t.TypeOf<typeof KeyPairDogePaymentsConfig>;
 export declare const SinglesigDogePaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -182,7 +182,7 @@ export declare const SinglesigDogePaymentsConfig: t.UnionC<[t.IntersectionC<[t.I
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 }>]>]>;
-export declare type SinglesigDogePaymentsConfig = t.TypeOf<typeof SinglesigDogePaymentsConfig>;
+export type SinglesigDogePaymentsConfig = t.TypeOf<typeof SinglesigDogePaymentsConfig>;
 export declare const MultisigDogePaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -255,7 +255,7 @@ export declare const MultisigDogePaymentsConfig: t.IntersectionC<[t.Intersection
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 }>]>;
-export declare type MultisigDogePaymentsConfig = t.TypeOf<typeof MultisigDogePaymentsConfig>;
+export type MultisigDogePaymentsConfig = t.TypeOf<typeof MultisigDogePaymentsConfig>;
 export declare const DogePaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -375,7 +375,7 @@ export declare const DogePaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersecti
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 }>]>]>;
-export declare type DogePaymentsConfig = t.TypeOf<typeof DogePaymentsConfig>;
+export type DogePaymentsConfig = t.TypeOf<typeof DogePaymentsConfig>;
 export declare const DogeUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     inputs: t.ArrayC<t.IntersectionC<[t.TypeC<{
         txid: t.StringC;
@@ -415,7 +415,7 @@ export declare const DogeUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     rawHash: t.StringC;
     weight: t.NumberC;
 }>]>;
-export declare type DogeUnsignedTransactionData = t.TypeOf<typeof DogeUnsignedTransactionData>;
+export type DogeUnsignedTransactionData = t.TypeOf<typeof DogeUnsignedTransactionData>;
 export declare const DogeUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -579,7 +579,7 @@ export declare const DogeUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[
         weight: t.NumberC;
     }>]>;
 }>]>;
-export declare type DogeUnsignedTransaction = t.TypeOf<typeof DogeUnsignedTransaction>;
+export type DogeUnsignedTransaction = t.TypeOf<typeof DogeUnsignedTransaction>;
 export declare const DogeSignedTransactionData: t.IntersectionC<[t.TypeC<{
     hex: t.StringC;
 }>, t.PartialC<{
@@ -590,7 +590,7 @@ export declare const DogeSignedTransactionData: t.IntersectionC<[t.TypeC<{
         value: t.StringC;
     }>>;
 }>]>;
-export declare type DogeSignedTransactionData = t.TypeOf<typeof DogeSignedTransactionData>;
+export type DogeSignedTransactionData = t.TypeOf<typeof DogeSignedTransactionData>;
 export declare const DogeSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -695,7 +695,7 @@ export declare const DogeSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.
         }>>;
     }>]>;
 }>]>;
-export declare type DogeSignedTransaction = t.TypeOf<typeof DogeSignedTransaction>;
+export type DogeSignedTransaction = t.TypeOf<typeof DogeSignedTransaction>;
 export declare const DogeTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -763,11 +763,11 @@ export declare const DogeTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.Ty
     currentBlockNumber: t.UnionC<[t.StringC, t.NumberC]>;
     confirmationNumber: t.UnionC<[t.StringC, t.NumberC]>;
 }>]>;
-export declare type DogeTransactionInfo = t.TypeOf<typeof DogeTransactionInfo>;
+export type DogeTransactionInfo = t.TypeOf<typeof DogeTransactionInfo>;
 export declare const DogeBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
-export declare type DogeBroadcastResult = t.TypeOf<typeof DogeBroadcastResult>;
+export type DogeBroadcastResult = t.TypeOf<typeof DogeBroadcastResult>;
 export declare const DogeBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     page: t.NumberC;
     totalPages: t.NumberC;
@@ -825,6 +825,7 @@ export declare const DogeBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -885,6 +886,7 @@ export declare const DogeBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -955,5 +957,5 @@ export declare const DogeBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         fees: t.StringC;
     }>]>>;
 }>]>;
-export declare type DogeBlock = bitcoinish.BlockInfoBitcoin;
+export type DogeBlock = bitcoinish.BlockInfoBitcoin;
 export {};

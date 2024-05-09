@@ -73,7 +73,7 @@ export const EthereumPaymentsUtilsConfig = extendCodec(
     parityNode: OptionalString,
     blockbookNode: t.string,
     blockbookApi: instanceofCodec(BlockbookEthereum),
-    gasStation: OptionalString,
+    etherScanApiKey: OptionalString,
     symbol: OptionalString,
     name: OptionalString,
     decimals: t.number,
@@ -293,7 +293,7 @@ export const NetworkDataConfig = requiredOptionalCodec(
   {
     parityUrl: t.string,
     logger: Logger,
-    gasStationUrl: t.string,
+    etherScanApiKey: t.string,
     requestTimeoutMs: t.number,
   },
   'NetworkDataConfig',

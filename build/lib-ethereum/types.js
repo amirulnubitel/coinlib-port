@@ -58,7 +58,7 @@ exports.EthereumPaymentsUtilsConfig = (0, ts_common_1.extendCodec)(lib_common_1.
     parityNode: OptionalString,
     blockbookNode: t.string,
     blockbookApi: (0, ts_common_1.instanceofCodec)(blockbook_client_1.BlockbookEthereum),
-    gasStation: OptionalString,
+    etherScanApiKey: OptionalString,
     symbol: OptionalString,
     name: OptionalString,
     decimals: t.number,
@@ -151,7 +151,7 @@ exports.NetworkDataConfig = (0, ts_common_1.requiredOptionalCodec)({
 }, {
     parityUrl: t.string,
     logger: ts_common_1.Logger,
-    gasStationUrl: t.string,
+    etherScanApiKey: t.string,
     requestTimeoutMs: t.number,
 }, 'NetworkDataConfig');
 exports.EthereumBalanceMonitorConfig = exports.EthereumPaymentsUtilsConfig;

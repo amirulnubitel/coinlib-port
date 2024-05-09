@@ -3,7 +3,7 @@ import { GetAddressDetailsOptions, NormalizedTxEthereum } from 'blockbook-client
 import { TransactionConfig } from 'web3-core';
 import { EthereumNetworkDataProvider, EthereumStandardizedERC20Transaction, EthereumStandardizedTransaction, EthTxType, NetworkDataConfig } from './types';
 export declare class NetworkData {
-    private gasStationUrl;
+    private etherScanApiKey;
     private parityUrl;
     private logger;
     private blockBookService;
@@ -99,6 +99,7 @@ export declare class NetworkData {
         lockTime?: number;
         blockHash?: string;
         size?: number;
+        vsize?: number;
         valueIn?: string;
         fees?: string;
         hex?: string;

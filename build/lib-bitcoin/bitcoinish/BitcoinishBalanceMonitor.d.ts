@@ -9,7 +9,7 @@ export declare abstract class BitcoinishBalanceMonitor extends BlockbookConnecte
     readonly coinName: string;
     readonly coinSymbol: string;
     readonly utils: BitcoinishPaymentsUtils;
-    readonly events: EventEmitter;
+    readonly events: EventEmitter<[never]>;
     constructor(config: BitcoinishBalanceMonitorConfig);
     destroy(): Promise<void>;
     subscribeAddresses(addresses: string[]): Promise<void>;

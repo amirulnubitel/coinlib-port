@@ -6,7 +6,7 @@ import { Signer as BitcoinjsSigner } from 'bitcoinjs-lib';
 import { BlockbookBitcoin, BlockInfoBitcoin, NormalizedTxBitcoin, NormalizedTxBitcoinVin, NormalizedTxBitcoinVout } from 'blockbook-client';
 import { BitcoinishPaymentsUtils } from './BitcoinishPaymentsUtils';
 export { BlockbookBitcoin, BlockInfoBitcoin, NormalizedTxBitcoin, NormalizedTxBitcoinVout, NormalizedTxBitcoinVin };
-export declare type BitcoinjsKeyPair = BitcoinjsSigner & {
+export type BitcoinjsKeyPair = BitcoinjsSigner & {
     privateKey?: Buffer;
     toWIF(): string;
 };
@@ -24,22 +24,22 @@ declare const SinglesigAddressTypeT: t.KeyofC<{
     "p2sh-p2wpkh": any;
     p2wpkh: any;
 }>;
-export declare type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
+export type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
 export declare const SinglesigAddressType: t.Type<AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, unknown>;
 declare const MultisigAddressTypeT: t.KeyofC<{
     "p2sh-p2ms": any;
     "p2sh-p2wsh-p2ms": any;
     "p2wsh-p2ms": any;
 }>;
-export declare type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
+export type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
 export declare const MultisigAddressType: t.Type<AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, unknown>;
 export declare const FeeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<FeeLevel.Low>, t.LiteralC<FeeLevel.Medium>, t.LiteralC<FeeLevel.High>]>, t.NumberC>;
-export declare type FeeLevelBlockTargets = t.TypeOf<typeof FeeLevelBlockTargets>;
+export type FeeLevelBlockTargets = t.TypeOf<typeof FeeLevelBlockTargets>;
 /** A hack to get around TS2742 when config is re-exported from coin-payments */
 export declare class BlockbookServerAPI extends BlockbookBitcoin {
 }
 export declare const BlockbookConfigServer: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
-export declare type BlockbookConfigServer = t.TypeOf<typeof BlockbookConfigServer>;
+export type BlockbookConfigServer = t.TypeOf<typeof BlockbookConfigServer>;
 export declare const BlockbookConnectedConfig: t.IntersectionC<[t.TypeC<{
     network: t.Type<import("../../lib-common").NetworkType, import("../../lib-common").NetworkType, unknown>;
     packageName: t.StringC;
@@ -49,7 +49,7 @@ export declare const BlockbookConnectedConfig: t.IntersectionC<[t.TypeC<{
     api: t.Type<BlockbookServerAPI, BlockbookServerAPI, unknown>;
     requestTimeoutMs: t.NumberC;
 }>]>;
-export declare type BlockbookConnectedConfig = t.TypeOf<typeof BlockbookConnectedConfig>;
+export type BlockbookConnectedConfig = t.TypeOf<typeof BlockbookConnectedConfig>;
 export declare const BitcoinjsNetwork: t.TypeC<{
     messagePrefix: t.StringC;
     bech32: t.StringC;
@@ -61,7 +61,7 @@ export declare const BitcoinjsNetwork: t.TypeC<{
     scriptHash: t.NumberC;
     wif: t.NumberC;
 }>;
-export declare type BitcoinjsNetwork = t.TypeOf<typeof BitcoinjsNetwork>;
+export type BitcoinjsNetwork = t.TypeOf<typeof BitcoinjsNetwork>;
 export declare const BitcoinishPaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     network: t.Type<import("../../lib-common").NetworkType, import("../../lib-common").NetworkType, unknown>;
     packageName: t.StringC;
@@ -90,11 +90,11 @@ export declare const BitcoinishPaymentsUtilsConfig: t.IntersectionC<[t.Intersect
     blockcypherToken: t.StringC;
     feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<FeeLevel.Low>, t.LiteralC<FeeLevel.Medium>, t.LiteralC<FeeLevel.High>]>, t.NumberC>;
 }>]>;
-export declare type BitcoinishPaymentsUtilsConfig = t.TypeOf<typeof BitcoinishPaymentsUtilsConfig>;
-export declare type BitcoinishBalanceMonitorConfig = BlockbookConnectedConfig & {
+export type BitcoinishPaymentsUtilsConfig = t.TypeOf<typeof BitcoinishPaymentsUtilsConfig>;
+export type BitcoinishBalanceMonitorConfig = BlockbookConnectedConfig & {
     utils: BitcoinishPaymentsUtils;
 };
-export declare type BitcoinishPaymentsConfig = BitcoinishPaymentsUtilsConfig & {
+export type BitcoinishPaymentsConfig = BitcoinishPaymentsUtilsConfig & {
     minTxFee: FeeRate;
     dustThreshold: number;
     defaultFeeLevel: AutoFeeLevels;
@@ -105,17 +105,17 @@ export declare const BitcoinishTxOutput: t.TypeC<{
     address: t.StringC;
     value: t.StringC;
 }>;
-export declare type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
+export type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
 export declare const BitcoinishTxOutputSatoshis: t.TypeC<{
     address: t.StringC;
     satoshis: t.NumberC;
 }>;
-export declare type BitcoinishTxOutputSatoshis = t.TypeOf<typeof BitcoinishTxOutputSatoshis>;
+export type BitcoinishTxOutputSatoshis = t.TypeOf<typeof BitcoinishTxOutputSatoshis>;
 export declare const BitcoinishWeightedChangeOutput: t.TypeC<{
     address: t.StringC;
     weight: t.NumberC;
 }>;
-export declare type BitcoinishWeightedChangeOutput = t.TypeOf<typeof BitcoinishWeightedChangeOutput>;
+export type BitcoinishWeightedChangeOutput = t.TypeOf<typeof BitcoinishWeightedChangeOutput>;
 /**
  * An object representing a Bitcoin like transaction (UTXO based) with inputs and outputs.
  *
@@ -162,7 +162,7 @@ export declare const BitcoinishPaymentTx: t.IntersectionC<[t.TypeC<{
     rawHash: t.StringC;
     weight: t.NumberC;
 }>]>;
-export declare type BitcoinishPaymentTx = t.TypeOf<typeof BitcoinishPaymentTx>;
+export type BitcoinishPaymentTx = t.TypeOf<typeof BitcoinishPaymentTx>;
 export declare const BitcoinishUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../../lib-common").TransactionStatus, import("../../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -284,7 +284,7 @@ export declare const BitcoinishUnsignedTransaction: t.IntersectionC<[t.Intersect
         weight: t.NumberC;
     }>]>;
 }>]>;
-export declare type BitcoinishUnsignedTransaction = t.TypeOf<typeof BitcoinishUnsignedTransaction>;
+export type BitcoinishUnsignedTransaction = t.TypeOf<typeof BitcoinishUnsignedTransaction>;
 export declare const BitcoinishSignedTransactionData: t.IntersectionC<[t.TypeC<{
     hex: t.StringC;
 }>, t.PartialC<{
@@ -295,7 +295,7 @@ export declare const BitcoinishSignedTransactionData: t.IntersectionC<[t.TypeC<{
         value: t.StringC;
     }>>;
 }>]>;
-export declare type BitcoinishSignedTransactionData = t.TypeOf<typeof BitcoinishSignedTransactionData>;
+export type BitcoinishSignedTransactionData = t.TypeOf<typeof BitcoinishSignedTransactionData>;
 export declare const BitcoinishSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../../lib-common").TransactionStatus, import("../../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -389,7 +389,7 @@ export declare const BitcoinishSignedTransaction: t.IntersectionC<[t.Intersectio
         }>>;
     }>]>;
 }>]>;
-export declare type BitcoinishSignedTransaction = t.TypeOf<typeof BitcoinishSignedTransaction>;
+export type BitcoinishSignedTransaction = t.TypeOf<typeof BitcoinishSignedTransaction>;
 export declare const BitcoinishTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../../lib-common").TransactionStatus, import("../../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -495,6 +495,7 @@ export declare const BitcoinishTransactionInfo: t.IntersectionC<[t.IntersectionC
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -565,11 +566,11 @@ export declare const BitcoinishTransactionInfo: t.IntersectionC<[t.IntersectionC
         fees: t.StringC;
     }>]>;
 }>]>;
-export declare type BitcoinishTransactionInfo = t.TypeOf<typeof BitcoinishTransactionInfo>;
+export type BitcoinishTransactionInfo = t.TypeOf<typeof BitcoinishTransactionInfo>;
 export declare const BitcoinishBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
-export declare type BitcoinishBroadcastResult = t.TypeOf<typeof BitcoinishBroadcastResult>;
+export type BitcoinishBroadcastResult = t.TypeOf<typeof BitcoinishBroadcastResult>;
 export declare const BitcoinishBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     page: t.NumberC;
     totalPages: t.NumberC;
@@ -627,6 +628,7 @@ export declare const BitcoinishBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -687,6 +689,7 @@ export declare const BitcoinishBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -757,14 +760,14 @@ export declare const BitcoinishBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<
         fees: t.StringC;
     }>]>>;
 }>]>;
-export declare type BitcoinishBlock = BlockInfoBitcoin;
-export declare type UtxoInfoWithSats = UtxoInfo & {
+export type BitcoinishBlock = BlockInfoBitcoin;
+export type UtxoInfoWithSats = UtxoInfo & {
     satoshis: number;
 };
-export declare type TxHashToDataHex = {
+export type TxHashToDataHex = {
     [hash: string]: string;
 };
-export declare type BitcoinishTxBuildContext = {
+export type BitcoinishTxBuildContext = {
     /** Utxos not already used by pending transactions */
     readonly unusedUtxos: UtxoInfoWithSats[];
     /** Utxos we must select from in order to RBF */
@@ -808,7 +811,7 @@ export declare type BitcoinishTxBuildContext = {
     /** Change outputs with amounts in satoshis */
     changeOutputs: BitcoinishTxOutputSatoshis[];
 };
-export declare type BitcoinishBuildPaymentTxParams = Pick<BitcoinishTxBuildContext, 'desiredOutputs' | 'desiredFeeRate' | 'useAllUtxos' | 'useUnconfirmedUtxos' | 'recipientPaysFee' | 'maxFeePercent'> & {
+export type BitcoinishBuildPaymentTxParams = Pick<BitcoinishTxBuildContext, 'desiredOutputs' | 'desiredFeeRate' | 'useAllUtxos' | 'useUnconfirmedUtxos' | 'recipientPaysFee' | 'maxFeePercent'> & {
     unusedUtxos: UtxoInfo[];
     enforcedUtxos: UtxoInfo[];
     changeAddress: string[];

@@ -12,6 +12,12 @@ const elliptic_1 = require("elliptic");
 const web3 = new web3_1.default();
 const ec = new elliptic_1.ec('secp256k1');
 class EthereumBIP44 {
+    static fromExtKey(xkey) {
+        if (['xprv', 'xpub'].includes(xkey.substring(0, 4))) {
+            return new EthereumBIP44(lib_common_1.bip32.fromBase58(xkey));
+        }
+        throw new Error('Not extended key');
+    }
     constructor(hdKey) {
         this.parts = [
             'm',
@@ -22,12 +28,6 @@ class EthereumBIP44 {
             // index
         ];
         this.key = hdKey;
-    }
-    static fromExtKey(xkey) {
-        if (['xprv', 'xpub'].includes(xkey.substring(0, 4))) {
-            return new EthereumBIP44(lib_common_1.bip32.fromBase58(xkey));
-        }
-        throw new Error('Not extended key');
     }
     getAddress(index) {
         const derived = this.deriveByIndex(index);

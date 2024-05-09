@@ -3,7 +3,7 @@ import { Numeric } from '../../ts-common';
 import { GetBlockOptions } from 'blockbook-client';
 import { BlockbookConnected } from './BlockbookConnected';
 import { BitcoinishPaymentsUtilsConfig, BitcoinishTransactionInfo, BitcoinjsNetwork, FeeLevelBlockTargets, NormalizedTxBitcoin, NormalizedTxBitcoinVout } from './types';
-declare type UnitConverters = ReturnType<typeof createUnitConverters>;
+type UnitConverters = ReturnType<typeof createUnitConverters>;
 export declare abstract class BitcoinishPaymentsUtils extends BlockbookConnected implements PaymentsUtils {
     readonly coinSymbol: string;
     readonly coinName: string;

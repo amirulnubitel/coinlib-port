@@ -91,11 +91,11 @@ export class EthereumPaymentsUtils extends UnitConvertersUtil implements Payment
     this.coinName = config.name ?? ETH_NAME
     this.coinSymbol = config.symbol ?? ETH_SYMBOL
     this.coinDecimals = config.decimals ?? ETH_DECIMAL_PLACES
-    this.server = 'https://main-rpc.linkpool.io/'
+    this.server = 'https://eth.drpc.org/'
     this.blockBookApi = config.blockbookApi!
 
     let provider: any
-    provider = new Web3.providers.HttpProvider('https://main-rpc.linkpool.io/', config.providerOptions)
+    provider = new Web3.providers.HttpProvider('https://eth.drpc.org/', config.providerOptions)
     this.web3 = new Web3(provider)
     // if (config.web3) {
     //   this.web3 = config.web3
@@ -146,7 +146,7 @@ export class EthereumPaymentsUtils extends UnitConvertersUtil implements Payment
     this.networkData = new NetworkData({
       web3Config: {
         web3: this.web3,
-        fullNode: 'https://main-rpc.linkpool.io/',
+        fullNode: 'https://eth.drpc.org/',
         decimals: config.decimals,
         providerOptions: config.providerOptions,
       },
@@ -157,7 +157,7 @@ export class EthereumPaymentsUtils extends UnitConvertersUtil implements Payment
         api: this.blockBookApi,
         requestTimeoutMs: config.requestTimeoutMs,
       },
-      gasStationUrl: config.gasStation,
+      etherScanApiKey: config.etherScanApiKey,
       requestTimeoutMs: config.requestTimeoutMs,
     })
   }

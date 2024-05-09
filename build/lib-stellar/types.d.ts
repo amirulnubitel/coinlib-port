@@ -1,17 +1,17 @@
 import * as t from 'io-ts';
 import { CreateTransactionOptions, Payport, FromTo } from '../lib-common';
 import * as Stellar from 'stellar-sdk';
-declare type NonFunctionPropertyNames<T> = {
+type NonFunctionPropertyNames<T> = {
     [K in keyof T]: T[K] extends Function ? never : K;
 }[keyof T];
-declare type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
-export declare type StellarCollectionPage<T extends Stellar.Horizon.BaseResponse<never>> = Stellar.ServerApi.CollectionPage<T>;
-export declare type StellarRawTransaction = NonFunctionProperties<Stellar.ServerApi.TransactionRecord>;
-export declare type StellarRawLedger = NonFunctionProperties<Stellar.ServerApi.LedgerRecord>;
+type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
+export type StellarCollectionPage<T extends Stellar.Horizon.BaseResponse<never>> = Stellar.ServerApi.CollectionPage<T>;
+export type StellarRawTransaction = NonFunctionProperties<Stellar.ServerApi.TransactionRecord>;
+export type StellarRawLedger = NonFunctionProperties<Stellar.ServerApi.LedgerRecord>;
 export { StellarRawTransaction as StellarTransaction, StellarRawLedger as StellarLedger, CreateTransactionOptions };
 export declare class StellarServerAPI extends Stellar.Server {
 }
-export declare type TransactionInfoRaw = StellarRawTransaction & {
+export type TransactionInfoRaw = StellarRawTransaction & {
     currentLedger: StellarRawLedger;
 };
 export declare const BaseStellarConfig: t.IntersectionC<[t.PartialC<{
@@ -21,7 +21,7 @@ export declare const BaseStellarConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.NullC]>;
     api: t.Type<StellarServerAPI, StellarServerAPI, unknown>;
 }>]>;
-export declare type BaseStellarConfig = t.TypeOf<typeof BaseStellarConfig>;
+export type BaseStellarConfig = t.TypeOf<typeof BaseStellarConfig>;
 export declare const StellarBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -29,7 +29,7 @@ export declare const StellarBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.NullC]>;
     api: t.Type<StellarServerAPI, StellarServerAPI, unknown>;
 }>]>;
-export declare type StellarBalanceMonitorConfig = t.TypeOf<typeof StellarBalanceMonitorConfig>;
+export type StellarBalanceMonitorConfig = t.TypeOf<typeof StellarBalanceMonitorConfig>;
 export declare const BaseStellarPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -39,7 +39,7 @@ export declare const BaseStellarPaymentsConfig: t.IntersectionC<[t.IntersectionC
 }>]>, t.PartialC<{
     txTimeoutSeconds: t.NumberC;
 }>]>;
-export declare type BaseStellarPaymentsConfig = t.TypeOf<typeof BaseStellarPaymentsConfig>;
+export type BaseStellarPaymentsConfig = t.TypeOf<typeof BaseStellarPaymentsConfig>;
 export declare const HdStellarPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -51,17 +51,17 @@ export declare const HdStellarPaymentsConfig: t.IntersectionC<[t.IntersectionC<[
 }>]>, t.TypeC<{
     seed: t.StringC;
 }>]>;
-export declare type HdStellarPaymentsConfig = t.TypeOf<typeof HdStellarPaymentsConfig>;
+export type HdStellarPaymentsConfig = t.TypeOf<typeof HdStellarPaymentsConfig>;
 export declare const StellarSignatory: t.TypeC<{
     address: t.StringC;
     secret: t.StringC;
 }>;
-export declare type StellarSignatory = t.TypeOf<typeof StellarSignatory>;
+export type StellarSignatory = t.TypeOf<typeof StellarSignatory>;
 export declare const PartialStellarSignatory: t.PartialC<{
     address: t.StringC;
     secret: t.StringC;
 }>;
-export declare type PartialStellarSignatory = t.TypeOf<typeof PartialStellarSignatory>;
+export type PartialStellarSignatory = t.TypeOf<typeof PartialStellarSignatory>;
 /**
  * address, or secret+address
  */
@@ -69,7 +69,7 @@ export declare const StellarAccountConfig: t.UnionC<[t.StringC, t.PartialC<{
     address: t.StringC;
     secret: t.StringC;
 }>]>;
-export declare type StellarAccountConfig = t.TypeOf<typeof StellarAccountConfig>;
+export type StellarAccountConfig = t.TypeOf<typeof StellarAccountConfig>;
 export declare const AccountStellarPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -88,7 +88,7 @@ export declare const AccountStellarPaymentsConfig: t.IntersectionC<[t.Intersecti
         secret: t.StringC;
     }>]>;
 }>]>;
-export declare type AccountStellarPaymentsConfig = t.TypeOf<typeof AccountStellarPaymentsConfig>;
+export type AccountStellarPaymentsConfig = t.TypeOf<typeof AccountStellarPaymentsConfig>;
 export declare const StellarPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -117,7 +117,7 @@ export declare const StellarPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Interse
         secret: t.StringC;
     }>]>;
 }>]>]>;
-export declare type StellarPaymentsConfig = t.TypeOf<typeof StellarPaymentsConfig>;
+export type StellarPaymentsConfig = t.TypeOf<typeof StellarPaymentsConfig>;
 export declare const StellarUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -200,7 +200,7 @@ export declare const StellarUnsignedTransaction: t.IntersectionC<[t.Intersection
     amount: t.StringC;
     fee: t.StringC;
 }>]>;
-export declare type StellarUnsignedTransaction = t.TypeOf<typeof StellarUnsignedTransaction>;
+export type StellarUnsignedTransaction = t.TypeOf<typeof StellarUnsignedTransaction>;
 export declare const StellarSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -283,7 +283,7 @@ export declare const StellarSignedTransaction: t.IntersectionC<[t.IntersectionC<
     fee: t.StringC;
     data: t.ObjectC;
 }>]>;
-export declare type StellarSignedTransaction = t.TypeOf<typeof StellarSignedTransaction>;
+export type StellarSignedTransaction = t.TypeOf<typeof StellarSignedTransaction>;
 export declare const StellarTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -353,14 +353,14 @@ export declare const StellarTransactionInfo: t.IntersectionC<[t.IntersectionC<[t
 }>]>, t.TypeC<{
     confirmationNumber: t.UnionC<[t.StringC, t.NullC]>;
 }>]>;
-export declare type StellarTransactionInfo = t.TypeOf<typeof StellarTransactionInfo>;
+export type StellarTransactionInfo = t.TypeOf<typeof StellarTransactionInfo>;
 export declare const StellarBroadcastResult: t.IntersectionC<[t.TypeC<{
     id: t.StringC;
 }>, t.TypeC<{
     rebroadcast: t.BooleanC;
     data: t.ObjectC;
 }>]>;
-export declare type StellarBroadcastResult = t.TypeOf<typeof StellarBroadcastResult>;
+export type StellarBroadcastResult = t.TypeOf<typeof StellarBroadcastResult>;
 export declare const StellarCreateTransactionOptions: t.IntersectionC<[t.IntersectionC<[t.UnionC<[t.IntersectionC<[t.TypeC<{
     feeRate: t.StringC;
     feeRateType: t.Type<import("../lib-common").FeeRateType, import("../lib-common").FeeRateType, unknown>;
@@ -412,8 +412,8 @@ export declare const StellarCreateTransactionOptions: t.IntersectionC<[t.Interse
 }>]>, t.PartialC<{
     timeoutSeconds: t.NumberC;
 }>]>;
-export declare type StellarCreateTransactionOptions = t.TypeOf<typeof StellarCreateTransactionOptions>;
-export declare type FromToWithPayport = FromTo & {
+export type StellarCreateTransactionOptions = t.TypeOf<typeof StellarCreateTransactionOptions>;
+export type FromToWithPayport = FromTo & {
     fromPayport: Payport;
     toPayport: Payport;
 };
