@@ -1,5 +1,5 @@
 import * as t from 'io-ts';
-export declare type LoggerFn = (...args: any[]) => void;
+export type LoggerFn = (...args: any[]) => void;
 export interface Logger {
     error: LoggerFn;
     warn: LoggerFn;

@@ -17,14 +17,14 @@ import { NetworkDataBlockbook } from './NetworkDataBlockbook'
 import { NetworkDataWeb3 } from './NetworkDataWeb3'
 
 export class NetworkData {
-  private gasStationUrl: string | undefined
+  private etherScanApiKey: string | undefined
   private parityUrl: string | undefined
   private logger: Logger
   private blockBookService: NetworkDataBlockbook
   private web3Service: NetworkDataWeb3
 
   constructor(config: NetworkDataConfig) {
-    this.gasStationUrl = config.gasStationUrl ?? GAS_STATION_URL
+    this.etherScanApiKey = config.etherScanApiKey ?? ''
     this.logger = new DelegateLogger(config.logger, 'NetworkData')
 
     this.blockBookService = new NetworkDataBlockbook({
@@ -36,7 +36,7 @@ export class NetworkData {
 
     this.web3Service = new NetworkDataWeb3({
       ...config.web3Config,
-      fullNode: 'https://main-rpc.linkpool.io/',
+      fullNode: 'https://eth.drpc.org/',
       logger: this.logger,
     })
 
@@ -165,13 +165,12 @@ export class NetworkData {
   }
 
   private async getGasStationGasPrice(level: AutoFeeLevels): Promise<string> {
-    const hasKey = /\?api-key=/.test(this.gasStationUrl || '')
     const options = {
-      url: hasKey ? `${this.gasStationUrl}` : `${this.gasStationUrl}/json/ethgasAPI.json`,
+      url: 'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=' + this.etherScanApiKey,
       json: true,
       timeout: 5000,
     }
-    let body: { [key: string]: number }
+    let body: { "result": { [key: string]: number } }
     try {
       body = await limiter.schedule(() => request.get(options))
     } catch (e) {
@@ -179,12 +178,12 @@ export class NetworkData {
       return ''
     }
     const speed = GAS_STATION_FEE_SPEED[level]
-    if (!(body && body.blockNum && body[speed])) {
+    if (!(body && body.result.LastBlock && body.result[speed])) {
       this.logger.warn('Bad result or missing fields in ethgasstation response', body)
       return ''
     }
 
-    const price10xGwei = body[speed]
+    const price10xGwei = body.result[speed]
 
     const gwei = new BigNumber(price10xGwei).dividedBy(10)
     this.logger.log(`Retrieved gas price of ${gwei} Gwei from ethgasstation using speed ${speed}`)

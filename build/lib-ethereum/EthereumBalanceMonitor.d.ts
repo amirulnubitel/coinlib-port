@@ -4,7 +4,7 @@ import { NormalizedTxEthereum } from 'blockbook-client';
 import { EventEmitter } from 'events';
 import { EthereumPaymentsUtils } from './EthereumPaymentsUtils';
 export declare class EthereumBalanceMonitor extends EthereumPaymentsUtils implements BalanceMonitor {
-    readonly events: EventEmitter;
+    readonly events: EventEmitter<[never]>;
     init(): Promise<void>;
     destroy(): Promise<void>;
     getTxWithMemoization(txId: string, cache: {
@@ -47,6 +47,7 @@ export declare class EthereumBalanceMonitor extends EthereumPaymentsUtils implem
         lockTime?: number;
         blockHash?: string;
         size?: number;
+        vsize?: number;
         valueIn?: string;
         fees?: string;
         hex?: string;

@@ -9,7 +9,7 @@ export interface PsbtTxInput extends TransactionInput {
 export interface PsbtTxOutput extends TransactionOutput {
     address: string | undefined;
 }
-export declare type BitcoinjsKeyPair = BitcoinjsSigner & {
+export type BitcoinjsKeyPair = BitcoinjsSigner & {
     privateKey?: Buffer;
     toWIF(): string;
 };
@@ -23,18 +23,18 @@ export declare const AddressTypeT: t.Type<AddressType, AddressType, unknown>;
 declare const SinglesigAddressTypeT: t.KeyofC<{
     p2pkh: any;
 }>;
-export declare type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
+export type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
 export declare const SinglesigAddressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 declare const MultisigAddressTypeT: t.KeyofC<{
     "p2sh-p2ms": any;
 }>;
-export declare type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
+export type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
 export declare const MultisigAddressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 export declare const BitcoinishTxOutput: t.TypeC<{
     address: t.StringC;
     value: t.StringC;
 }>;
-export declare type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
+export type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
 export declare const DashBaseConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -42,7 +42,7 @@ export declare const DashBaseConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type DashBaseConfig = t.TypeOf<typeof DashBaseConfig>;
+export type DashBaseConfig = t.TypeOf<typeof DashBaseConfig>;
 export declare const DashBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -50,7 +50,7 @@ export declare const DashBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type DashBalanceMonitorConfig = DashBaseConfig;
+export type DashBalanceMonitorConfig = DashBaseConfig;
 export declare const DashPaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -61,7 +61,7 @@ export declare const DashPaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[
     blockcypherToken: t.StringC;
     feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
 }>]>;
-export declare type DashPaymentsUtilsConfig = t.TypeOf<typeof DashPaymentsUtilsConfig>;
+export type DashPaymentsUtilsConfig = t.TypeOf<typeof DashPaymentsUtilsConfig>;
 export declare const BaseDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -82,7 +82,7 @@ export declare const BaseDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t
     minChange: t.StringC;
     maximumFeeRate: t.NumberC;
 }>]>;
-export declare type BaseDashPaymentsConfig = t.TypeOf<typeof BaseDashPaymentsConfig>;
+export type BaseDashPaymentsConfig = t.TypeOf<typeof BaseDashPaymentsConfig>;
 export declare const HdDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -108,7 +108,7 @@ export declare const HdDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.I
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
     derivationPath: t.StringC;
 }>]>;
-export declare type HdDashPaymentsConfig = t.TypeOf<typeof HdDashPaymentsConfig>;
+export type HdDashPaymentsConfig = t.TypeOf<typeof HdDashPaymentsConfig>;
 export declare const KeyPairDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -133,7 +133,7 @@ export declare const KeyPairDashPaymentsConfig: t.IntersectionC<[t.IntersectionC
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 }>]>;
-export declare type KeyPairDashPaymentsConfig = t.TypeOf<typeof KeyPairDashPaymentsConfig>;
+export type KeyPairDashPaymentsConfig = t.TypeOf<typeof KeyPairDashPaymentsConfig>;
 export declare const SinglesigDashPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -182,7 +182,7 @@ export declare const SinglesigDashPaymentsConfig: t.UnionC<[t.IntersectionC<[t.I
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy, AddressType.Legacy, unknown>;
 }>]>]>;
-export declare type SinglesigDashPaymentsConfig = t.TypeOf<typeof SinglesigDashPaymentsConfig>;
+export type SinglesigDashPaymentsConfig = t.TypeOf<typeof SinglesigDashPaymentsConfig>;
 export declare const MultisigDashPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -255,7 +255,7 @@ export declare const MultisigDashPaymentsConfig: t.IntersectionC<[t.Intersection
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 }>]>;
-export declare type MultisigDashPaymentsConfig = t.TypeOf<typeof MultisigDashPaymentsConfig>;
+export type MultisigDashPaymentsConfig = t.TypeOf<typeof MultisigDashPaymentsConfig>;
 export declare const DashPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -375,7 +375,7 @@ export declare const DashPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersecti
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy, AddressType.MultisigLegacy, unknown>;
 }>]>]>;
-export declare type DashPaymentsConfig = t.TypeOf<typeof DashPaymentsConfig>;
+export type DashPaymentsConfig = t.TypeOf<typeof DashPaymentsConfig>;
 export declare const DashUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     inputs: t.ArrayC<t.IntersectionC<[t.TypeC<{
         txid: t.StringC;
@@ -415,7 +415,7 @@ export declare const DashUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     rawHash: t.StringC;
     weight: t.NumberC;
 }>]>;
-export declare type DashUnsignedTransactionData = t.TypeOf<typeof DashUnsignedTransactionData>;
+export type DashUnsignedTransactionData = t.TypeOf<typeof DashUnsignedTransactionData>;
 export declare const DashUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -579,7 +579,7 @@ export declare const DashUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[
         weight: t.NumberC;
     }>]>;
 }>]>;
-export declare type DashUnsignedTransaction = t.TypeOf<typeof DashUnsignedTransaction>;
+export type DashUnsignedTransaction = t.TypeOf<typeof DashUnsignedTransaction>;
 export declare const DashSignedTransactionData: t.IntersectionC<[t.TypeC<{
     hex: t.StringC;
 }>, t.PartialC<{
@@ -590,7 +590,7 @@ export declare const DashSignedTransactionData: t.IntersectionC<[t.TypeC<{
         value: t.StringC;
     }>>;
 }>]>;
-export declare type DashSignedTransactionData = t.TypeOf<typeof DashSignedTransactionData>;
+export type DashSignedTransactionData = t.TypeOf<typeof DashSignedTransactionData>;
 export declare const DashSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -695,7 +695,7 @@ export declare const DashSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.
         }>>;
     }>]>;
 }>]>;
-export declare type DashSignedTransaction = t.TypeOf<typeof DashSignedTransaction>;
+export type DashSignedTransaction = t.TypeOf<typeof DashSignedTransaction>;
 export declare const DashTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -763,11 +763,11 @@ export declare const DashTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.Ty
     currentBlockNumber: t.UnionC<[t.StringC, t.NumberC]>;
     confirmationNumber: t.UnionC<[t.StringC, t.NumberC]>;
 }>]>;
-export declare type DashTransactionInfo = t.TypeOf<typeof DashTransactionInfo>;
+export type DashTransactionInfo = t.TypeOf<typeof DashTransactionInfo>;
 export declare const DashBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
-export declare type DashBroadcastResult = t.TypeOf<typeof DashBroadcastResult>;
+export type DashBroadcastResult = t.TypeOf<typeof DashBroadcastResult>;
 export declare const DashBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     page: t.NumberC;
     totalPages: t.NumberC;
@@ -825,6 +825,7 @@ export declare const DashBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -885,6 +886,7 @@ export declare const DashBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -955,5 +957,5 @@ export declare const DashBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         fees: t.StringC;
     }>]>>;
 }>]>;
-export declare type DashBlock = bitcoinish.BlockInfoBitcoin;
+export type DashBlock = bitcoinish.BlockInfoBitcoin;
 export {};

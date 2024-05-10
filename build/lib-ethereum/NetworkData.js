@@ -34,7 +34,7 @@ const NetworkDataWeb3_1 = require("./NetworkDataWeb3");
 class NetworkData {
     constructor(config) {
         var _a;
-        this.gasStationUrl = (_a = config.gasStationUrl) !== null && _a !== void 0 ? _a : constants_1.GAS_STATION_URL;
+        this.etherScanApiKey = (_a = config.etherScanApiKey) !== null && _a !== void 0 ? _a : '';
         this.logger = new ts_common_1.DelegateLogger(config.logger, 'NetworkData');
         this.blockBookService = new NetworkDataBlockbook_1.NetworkDataBlockbook({
             ...config.blockBookConfig,
@@ -44,7 +44,7 @@ class NetworkData {
         });
         this.web3Service = new NetworkDataWeb3_1.NetworkDataWeb3({
             ...config.web3Config,
-            fullNode: 'https://main-rpc.linkpool.io/',
+            fullNode: 'https://eth.drpc.org/',
             logger: this.logger,
         });
         this.parityUrl = config.parityUrl;
@@ -141,9 +141,8 @@ class NetworkData {
         return new lib_common_1.BigNumber(body.result, 16).toString();
     }
     async getGasStationGasPrice(level) {
-        const hasKey = /\?api-key=/.test(this.gasStationUrl || '');
         const options = {
-            url: hasKey ? `${this.gasStationUrl}` : `${this.gasStationUrl}/json/ethgasAPI.json`,
+            url: 'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=' + this.etherScanApiKey,
             json: true,
             timeout: 5000,
         };
@@ -156,11 +155,11 @@ class NetworkData {
             return '';
         }
         const speed = constants_1.GAS_STATION_FEE_SPEED[level];
-        if (!(body && body.blockNum && body[speed])) {
+        if (!(body && body.result.LastBlock && body.result[speed])) {
             this.logger.warn('Bad result or missing fields in ethgasstation response', body);
             return '';
         }
-        const price10xGwei = body[speed];
+        const price10xGwei = body.result[speed];
         const gwei = new lib_common_1.BigNumber(price10xGwei).dividedBy(10);
         this.logger.log(`Retrieved gas price of ${gwei} Gwei from ethgasstation using speed ${speed}`);
         return gwei.multipliedBy(1e9).dp(0, lib_common_1.BigNumber.ROUND_DOWN).toFixed();

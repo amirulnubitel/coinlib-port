@@ -10,5 +10,5 @@ export interface BigNumberC extends BigNumberType {
  * An io-ts codec representing a BigNumber. Can also be decoded from a string or number.
  */
 export declare const BigNumberT: BigNumberC;
-export declare type BigNumberT = t.TypeOf<typeof BigNumberT>;
+export type BigNumberT = t.TypeOf<typeof BigNumberT>;
 export {};

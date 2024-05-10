@@ -8,7 +8,7 @@ export declare enum LitecoinAddressFormat {
     Modern = "modern"
 }
 export declare const LitecoinAddressFormatT: t.Type<LitecoinAddressFormat, LitecoinAddressFormat, unknown>;
-export declare type LitecoinjsKeyPair = BitcoinjsSigner & {
+export type LitecoinjsKeyPair = BitcoinjsSigner & {
     privateKey?: Buffer;
     toWIF(): string;
 };
@@ -28,20 +28,20 @@ declare const SinglesigAddressTypeT: t.KeyofC<{
     "p2sh-p2wpkh": any;
     p2wpkh: any;
 }>;
-export declare type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
+export type SinglesigAddressType = t.TypeOf<typeof SinglesigAddressTypeT>;
 export declare const SinglesigAddressType: t.Type<AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, unknown>;
 declare const MultisigAddressTypeT: t.KeyofC<{
     "p2sh-p2ms": any;
     "p2sh-p2wsh-p2ms": any;
     "p2wsh-p2ms": any;
 }>;
-export declare type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
+export type MultisigAddressType = t.TypeOf<typeof MultisigAddressTypeT>;
 export declare const MultisigAddressType: t.Type<AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, unknown>;
 export declare const BitcoinishTxOutput: t.TypeC<{
     address: t.StringC;
     value: t.StringC;
 }>;
-export declare type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
+export type BitcoinishTxOutput = t.TypeOf<typeof BitcoinishTxOutput>;
 export declare const LitecoinBaseConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -49,7 +49,7 @@ export declare const LitecoinBaseConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type LitecoinBaseConfig = t.TypeOf<typeof LitecoinBaseConfig>;
+export type LitecoinBaseConfig = t.TypeOf<typeof LitecoinBaseConfig>;
 export declare const LitecoinBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -57,7 +57,7 @@ export declare const LitecoinBalanceMonitorConfig: t.IntersectionC<[t.PartialC<{
     server: t.UnionC<[t.StringC, t.ArrayC<t.StringC>, t.NullC]>;
     api: t.Type<bitcoinish.BlockbookServerAPI, bitcoinish.BlockbookServerAPI, unknown>;
 }>]>;
-export declare type LitecoinBalanceMonitorConfig = LitecoinBaseConfig;
+export type LitecoinBalanceMonitorConfig = LitecoinBaseConfig;
 export declare const LitecoinPaymentsUtilsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -69,7 +69,7 @@ export declare const LitecoinPaymentsUtilsConfig: t.IntersectionC<[t.Intersectio
     validAddressFormat: t.Type<LitecoinAddressFormat, LitecoinAddressFormat, unknown>;
     feeLevelBlockTargets: t.RecordC<t.UnionC<[t.LiteralC<import("../lib-common").FeeLevel.Low>, t.LiteralC<import("../lib-common").FeeLevel.Medium>, t.LiteralC<import("../lib-common").FeeLevel.High>]>, t.NumberC>;
 }>]>;
-export declare type LitecoinPaymentsUtilsConfig = t.TypeOf<typeof LitecoinPaymentsUtilsConfig>;
+export type LitecoinPaymentsUtilsConfig = t.TypeOf<typeof LitecoinPaymentsUtilsConfig>;
 export declare const BaseLitecoinPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -91,7 +91,7 @@ export declare const BaseLitecoinPaymentsConfig: t.IntersectionC<[t.Intersection
     minChange: t.StringC;
     maximumFeeRate: t.NumberC;
 }>]>;
-export declare type BaseLitecoinPaymentsConfig = t.TypeOf<typeof BaseLitecoinPaymentsConfig>;
+export type BaseLitecoinPaymentsConfig = t.TypeOf<typeof BaseLitecoinPaymentsConfig>;
 export declare const HdLitecoinPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -118,7 +118,7 @@ export declare const HdLitecoinPaymentsConfig: t.IntersectionC<[t.IntersectionC<
     addressType: t.Type<AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, unknown>;
     derivationPath: t.StringC;
 }>]>;
-export declare type HdLitecoinPaymentsConfig = t.TypeOf<typeof HdLitecoinPaymentsConfig>;
+export type HdLitecoinPaymentsConfig = t.TypeOf<typeof HdLitecoinPaymentsConfig>;
 export declare const KeyPairLitecoinPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -144,7 +144,7 @@ export declare const KeyPairLitecoinPaymentsConfig: t.IntersectionC<[t.Intersect
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, unknown>;
 }>]>;
-export declare type KeyPairLitecoinPaymentsConfig = t.TypeOf<typeof KeyPairLitecoinPaymentsConfig>;
+export type KeyPairLitecoinPaymentsConfig = t.TypeOf<typeof KeyPairLitecoinPaymentsConfig>;
 export declare const SinglesigLitecoinPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -195,7 +195,7 @@ export declare const SinglesigLitecoinPaymentsConfig: t.UnionC<[t.IntersectionC<
 }>, t.PartialC<{
     addressType: t.Type<AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, AddressType.Legacy | AddressType.SegwitP2SH | AddressType.SegwitNative, unknown>;
 }>]>]>;
-export declare type SinglesigLitecoinPaymentsConfig = t.TypeOf<typeof SinglesigLitecoinPaymentsConfig>;
+export type SinglesigLitecoinPaymentsConfig = t.TypeOf<typeof SinglesigLitecoinPaymentsConfig>;
 export declare const MultisigLitecoinPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -271,7 +271,7 @@ export declare const MultisigLitecoinPaymentsConfig: t.IntersectionC<[t.Intersec
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, unknown>;
 }>]>;
-export declare type MultisigLitecoinPaymentsConfig = t.TypeOf<typeof MultisigLitecoinPaymentsConfig>;
+export type MultisigLitecoinPaymentsConfig = t.TypeOf<typeof MultisigLitecoinPaymentsConfig>;
 export declare const LitecoinPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -396,7 +396,7 @@ export declare const LitecoinPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Inters
 }>, t.PartialC<{
     addressType: t.Type<AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, AddressType.MultisigLegacy | AddressType.MultisigSegwitP2SH | AddressType.MultisigSegwitNative, unknown>;
 }>]>]>;
-export declare type LitecoinPaymentsConfig = t.TypeOf<typeof LitecoinPaymentsConfig>;
+export type LitecoinPaymentsConfig = t.TypeOf<typeof LitecoinPaymentsConfig>;
 export declare const LitecoinUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     inputs: t.ArrayC<t.IntersectionC<[t.TypeC<{
         txid: t.StringC;
@@ -436,7 +436,7 @@ export declare const LitecoinUnsignedTransactionData: t.IntersectionC<[t.TypeC<{
     rawHash: t.StringC;
     weight: t.NumberC;
 }>]>;
-export declare type LitecoinUnsignedTransactionData = t.TypeOf<typeof LitecoinUnsignedTransactionData>;
+export type LitecoinUnsignedTransactionData = t.TypeOf<typeof LitecoinUnsignedTransactionData>;
 export declare const LitecoinUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -600,7 +600,7 @@ export declare const LitecoinUnsignedTransaction: t.IntersectionC<[t.Intersectio
         weight: t.NumberC;
     }>]>;
 }>]>;
-export declare type LitecoinUnsignedTransaction = t.TypeOf<typeof LitecoinUnsignedTransaction>;
+export type LitecoinUnsignedTransaction = t.TypeOf<typeof LitecoinUnsignedTransaction>;
 export declare const LitecoinSignedTransactionData: t.IntersectionC<[t.TypeC<{
     hex: t.StringC;
 }>, t.PartialC<{
@@ -611,7 +611,7 @@ export declare const LitecoinSignedTransactionData: t.IntersectionC<[t.TypeC<{
         value: t.StringC;
     }>>;
 }>]>;
-export declare type LitecoinSignedTransactionData = t.TypeOf<typeof LitecoinSignedTransactionData>;
+export type LitecoinSignedTransactionData = t.TypeOf<typeof LitecoinSignedTransactionData>;
 export declare const LitecoinSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -716,7 +716,7 @@ export declare const LitecoinSignedTransaction: t.IntersectionC<[t.IntersectionC
         }>>;
     }>]>;
 }>]>;
-export declare type LitecoinSignedTransaction = t.TypeOf<typeof LitecoinSignedTransaction>;
+export type LitecoinSignedTransaction = t.TypeOf<typeof LitecoinSignedTransaction>;
 export declare const LitecoinTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -784,11 +784,11 @@ export declare const LitecoinTransactionInfo: t.IntersectionC<[t.IntersectionC<[
     currentBlockNumber: t.UnionC<[t.StringC, t.NumberC]>;
     confirmationNumber: t.UnionC<[t.StringC, t.NumberC]>;
 }>]>;
-export declare type LitecoinTransactionInfo = t.TypeOf<typeof LitecoinTransactionInfo>;
+export type LitecoinTransactionInfo = t.TypeOf<typeof LitecoinTransactionInfo>;
 export declare const LitecoinBroadcastResult: t.TypeC<{
     id: t.StringC;
 }>;
-export declare type LitecoinBroadcastResult = t.TypeOf<typeof LitecoinBroadcastResult>;
+export type LitecoinBroadcastResult = t.TypeOf<typeof LitecoinBroadcastResult>;
 export declare const LitecoinBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     page: t.NumberC;
     totalPages: t.NumberC;
@@ -846,6 +846,7 @@ export declare const LitecoinBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -906,6 +907,7 @@ export declare const LitecoinBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         lockTime: t.NumberC;
         blockHash: t.StringC;
         size: t.NumberC;
+        vsize: t.NumberC;
         valueIn: t.StringC;
         fees: t.StringC;
         hex: t.StringC;
@@ -976,5 +978,5 @@ export declare const LitecoinBlock: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
         fees: t.StringC;
     }>]>>;
 }>]>;
-export declare type LitecoinBlock = bitcoinish.BlockInfoBitcoin;
+export type LitecoinBlock = bitcoinish.BlockInfoBitcoin;
 export {};

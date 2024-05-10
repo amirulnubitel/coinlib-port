@@ -130,4 +130,4 @@ export interface BasePayments<Config extends BaseConfig, UnsignedTransaction ext
      */
     broadcastTransaction<O extends object>(signedTx: SignedTransaction, options?: O): Promise<BroadcastResult>;
 }
-export declare type AnyPayments<C extends object = any> = BasePayments<C, BaseUnsignedTransaction, BaseSignedTransaction, BaseBroadcastResult, BaseTransactionInfo>;
+export type AnyPayments<C extends object = any> = BasePayments<C, BaseUnsignedTransaction, BaseSignedTransaction, BaseBroadcastResult, BaseTransactionInfo>;

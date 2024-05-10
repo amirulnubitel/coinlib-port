@@ -2,7 +2,7 @@ import * as t from 'io-ts';
 import { CreateTransactionOptions, FromTo, Payport } from '../lib-common';
 import { Transaction as TronWebTransaction, TransactionInfo as TronWebTransactionInfo, Block as TronWebBlock } from 'tronweb';
 export { TronWebTransaction, TronWebTransactionInfo, TronWebBlock, CreateTransactionOptions };
-export declare type TransactionInfoRaw = TronWebTransaction & TronWebTransactionInfo & {
+export type TransactionInfoRaw = TronWebTransaction & TronWebTransactionInfo & {
     currentBlock: Pick<TronWebBlock, 'blockID' | 'block_header'>;
 };
 export declare const BaseTronPaymentsConfig: t.IntersectionC<[t.PartialC<{
@@ -13,7 +13,7 @@ export declare const BaseTronPaymentsConfig: t.IntersectionC<[t.PartialC<{
     solidityNode: t.StringC;
     eventServer: t.StringC;
 }>]>;
-export declare type BaseTronPaymentsConfig = t.TypeOf<typeof BaseTronPaymentsConfig>;
+export type BaseTronPaymentsConfig = t.TypeOf<typeof BaseTronPaymentsConfig>;
 export declare const HdTronPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -24,7 +24,7 @@ export declare const HdTronPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.P
 }>]>, t.TypeC<{
     hdKey: t.StringC;
 }>]>;
-export declare type HdTronPaymentsConfig = t.TypeOf<typeof HdTronPaymentsConfig>;
+export type HdTronPaymentsConfig = t.TypeOf<typeof HdTronPaymentsConfig>;
 export declare const KeyPairTronPaymentsConfig: t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -35,7 +35,7 @@ export declare const KeyPairTronPaymentsConfig: t.IntersectionC<[t.IntersectionC
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>;
-export declare type KeyPairTronPaymentsConfig = t.TypeOf<typeof KeyPairTronPaymentsConfig>;
+export type KeyPairTronPaymentsConfig = t.TypeOf<typeof KeyPairTronPaymentsConfig>;
 export declare const TronPaymentsConfig: t.UnionC<[t.IntersectionC<[t.IntersectionC<[t.PartialC<{
     network: t.Type<import("../lib-common").NetworkType, import("../lib-common").NetworkType, unknown>;
     logger: import("../ts-common").LoggerC;
@@ -55,7 +55,7 @@ export declare const TronPaymentsConfig: t.UnionC<[t.IntersectionC<[t.Intersecti
 }>]>, t.TypeC<{
     keyPairs: t.UnionC<[t.ArrayC<t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>, t.RecordC<t.NumberC, t.UnionC<[t.StringC, t.NullC, t.UndefinedC]>>]>;
 }>]>]>;
-export declare type TronPaymentsConfig = t.TypeOf<typeof TronPaymentsConfig>;
+export type TronPaymentsConfig = t.TypeOf<typeof TronPaymentsConfig>;
 export declare const TronUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -139,7 +139,7 @@ export declare const TronUnsignedTransaction: t.IntersectionC<[t.IntersectionC<[
     amount: t.StringC;
     fee: t.StringC;
 }>]>;
-export declare type TronUnsignedTransaction = t.TypeOf<typeof TronUnsignedTransaction>;
+export type TronUnsignedTransaction = t.TypeOf<typeof TronUnsignedTransaction>;
 export declare const TronSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -222,7 +222,7 @@ export declare const TronSignedTransaction: t.IntersectionC<[t.IntersectionC<[t.
     fee: t.StringC;
     data: t.ObjectC;
 }>]>;
-export declare type TronSignedTransaction = t.TypeOf<typeof TronSignedTransaction>;
+export type TronSignedTransaction = t.TypeOf<typeof TronSignedTransaction>;
 export declare const TronTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.TypeC<{
     status: t.Type<import("../lib-common").TransactionStatus, import("../lib-common").TransactionStatus, unknown>;
     id: t.UnionC<[t.StringC, t.NullC]>;
@@ -290,14 +290,14 @@ export declare const TronTransactionInfo: t.IntersectionC<[t.IntersectionC<[t.Ty
     currentBlockNumber: t.UnionC<[t.StringC, t.NumberC]>;
     confirmationNumber: t.UnionC<[t.StringC, t.NumberC]>;
 }>]>;
-export declare type TronTransactionInfo = t.TypeOf<typeof TronTransactionInfo>;
+export type TronTransactionInfo = t.TypeOf<typeof TronTransactionInfo>;
 export declare const TronBroadcastResult: t.IntersectionC<[t.TypeC<{
     id: t.StringC;
 }>, t.TypeC<{
     rebroadcast: t.BooleanC;
 }>]>;
-export declare type TronBroadcastResult = t.TypeOf<typeof TronBroadcastResult>;
-export declare type FromToWithPayport = FromTo & {
+export type TronBroadcastResult = t.TypeOf<typeof TronBroadcastResult>;
+export type FromToWithPayport = FromTo & {
     fromPayport: Payport;
     toPayport: Payport;
 };

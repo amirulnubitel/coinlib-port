@@ -13,11 +13,11 @@ export declare class UnitConvertersUtil {
         coinDecimals?: number;
     });
     getCustomUnitConverter(decimals: number): {
-        toMainDenominationBigNumber: (baseNumeric: string | number | import("bignumber.js").default) => import("bignumber.js").default;
-        toMainDenominationNumber: (baseNumeric: string | number | import("bignumber.js").default) => number;
-        toMainDenominationString: (baseNumeric: string | number | import("bignumber.js").default) => string;
-        toBaseDenominationBigNumber: (mainNumeric: string | number | import("bignumber.js").default) => import("bignumber.js").default;
-        toBaseDenominationNumber: (mainNumeric: string | number | import("bignumber.js").default) => number;
-        toBaseDenominationString: (mainNumeric: string | number | import("bignumber.js").default) => string;
+        toMainDenominationBigNumber: (baseNumeric: string | number | import("bignumber.js").BigNumber) => import("bignumber.js").BigNumber;
+        toMainDenominationNumber: (baseNumeric: string | number | import("bignumber.js").BigNumber) => number;
+        toMainDenominationString: (baseNumeric: string | number | import("bignumber.js").BigNumber) => string;
+        toBaseDenominationBigNumber: (mainNumeric: string | number | import("bignumber.js").BigNumber) => import("bignumber.js").BigNumber;
+        toBaseDenominationNumber: (mainNumeric: string | number | import("bignumber.js").BigNumber) => number;
+        toBaseDenominationString: (mainNumeric: string | number | import("bignumber.js").BigNumber) => string;
     };
 }
