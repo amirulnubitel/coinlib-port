@@ -1,5 +1,5 @@
 {
-  "name": "coinlib-port",
+  "name": "@amirulmus/coinlib-port",
   "version": "1.0.0",
   "description": "\"# coinlib-port\"",
   "main": "build/lib-base/index.js",
