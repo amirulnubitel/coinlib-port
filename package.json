@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "\"# coinlib-port\"",
   "main": "build/lib-base/index.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "workspaces": [
     "packages/*"
   ],
