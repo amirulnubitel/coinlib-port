@@ -1,7 +1,7 @@
 {
-  "name": "coinlib",
+  "name": "coinlibrary",
   "version": "1.0.0",
-  "description": "\"# coinlib\"",
+  "description": "\"# coinlibrary\"",
   "main": "build/lib-base/index.js",
   "engines": {
     "node": ">=22.0.0"
