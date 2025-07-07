@@ -1,5 +1,5 @@
 {
-  "name": "@amirulmus/coinlib",
+  "name": "amirulmus/coinlib",
   "version": "1.0.0",
   "description": "\"# coinlib\"",
   "main": "build/lib-base/index.js",
