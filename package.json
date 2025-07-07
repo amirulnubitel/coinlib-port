@@ -1,7 +1,7 @@
 {
-  "name": "@amirulmus/coinlib-port",
+  "name": "@amirulmus/coinlib",
   "version": "1.0.0",
-  "description": "\"# coinlib-port\"",
+  "description": "\"# coinlib\"",
   "main": "build/lib-base/index.js",
   "engines": {
     "node": ">=22.0.0"
