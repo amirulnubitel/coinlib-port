@@ -15,10 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20.x
+      - name: Use Node.js 24.x
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 24.x
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
@@ -27,7 +27,7 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Publish packages (Lerna)
+      - name: Publish package to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx lerna publish from-package --yes
+        run: npm publish --access public
