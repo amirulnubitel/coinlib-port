@@ -17,7 +17,21 @@
     "lint": "eslint --fix",
     "prettier-format": "prettier --config prettier.config.js 'src/**/*.ts' --write"
   },
-  "author": "dilan-dio4",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amirulnubitel/nubitel-messenger-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "facebook",
+    "messenger",
+    "api"
+  ],
+  "author": "Amirul M",
+  "bugs": {
+    "url": "https://github.com/amirulnubitel/coinlib-port/issues"
+  },
+  "homepage": "https://github.com/amirulnubitel/coinlib-port",
   "license": "ISC",
   "dependencies": {
     "base-x": "^4.0.0",
