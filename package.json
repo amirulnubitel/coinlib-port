@@ -2,7 +2,14 @@
   "name": "coinlibrary",
   "version": "1.0.0",
   "description": "\"# coinlibrary\"",
-  "main": "build/lib-base/index.js",
+  "main": "build-cjs/lib-base/index.js",
+  "module": "build-esm/lib-base/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./build-esm/lib-base/index.mjs",
+      "require": "./build-cjs/lib-base/index.js"
+    }
+  },
   "engines": {
     "node": ">=22.0.0"
   },
@@ -13,7 +20,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json && find ./build-esm -name '*.js' -exec bash -c 'mv \"$0\" \"${0%.js}.mjs\"' {} +",
+    "build": "npm run build:cjs && npm run build:esm",
+    "builds": "tsc",
     "lint": "eslint --fix",
     "prettier-format": "prettier --config prettier.config.js 'src/**/*.ts' --write"
   },
