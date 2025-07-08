@@ -1,6 +1,6 @@
 {
   "name": "coinlibrary",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "\"# coinlibrary\"",
   "main": "./build-cjs/lib-base/index.js",
   "module": "./build-esm/lib-base/index.mjs",
