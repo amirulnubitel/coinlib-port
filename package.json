@@ -1,7 +1,7 @@
 {
   "name": "coinlibrary",
-  "version": "1.0.3",
-  "type": "commonjs",
+  "version": "1.0.4",
+  "type": "module",
   "description": "\"# coinlibrary\"",
   "main": "./build-cjs/lib-base/index.js",
   "module": "./build-esm/lib-base/index.mjs",
@@ -9,14 +9,6 @@
     ".": {
       "import": "./build-esm/lib-base/index.mjs",
       "require": "./build-cjs/lib-base/index.js"
-    },
-    "./lib-base": {
-      "import": "./build-esm/lib-base/index.mjs",
-      "require": "./build-cjs/lib-base/index.js"
-    },
-    "./*": {
-      "import": "./build-esm/*.mjs",
-      "require": "./build-cjs/*.js"
     }
   },
   "engines": {
@@ -30,7 +22,8 @@
   ],
   "scripts": {
     "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json && find ./build-esm -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.mjs\"' _ {} \\;",
+    "build:esm": "tsc --project tsconfig.esm.json && find ./build-esm -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.mjs\"' _ {} \\; && node fix-esm-imports.cjs",
+    "fix-esm-imports": "node fix-esm-imports.cjs",
     "build": "npm run build:cjs && npm run build:esm",
     "builds": "tsc",
     "lint": "eslint --fix",
