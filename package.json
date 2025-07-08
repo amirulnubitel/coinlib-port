@@ -2,12 +2,16 @@
   "name": "coinlibrary",
   "version": "1.0.1",
   "description": "\"# coinlibrary\"",
-  "main": "build-cjs/lib-base/index.js",
-  "module": "build-esm/lib-base/index.mjs",
+  "main": "./build-cjs/lib-base/index.js",
+  "module": "./build-esm/lib-base/index.mjs",
   "exports": {
     ".": {
       "import": "./build-esm/lib-base/index.mjs",
       "require": "./build-cjs/lib-base/index.js"
+    },
+    "./lib-base/*": {
+      "import": "./build-esm/lib-base/*.mjs",
+      "require": "./build-cjs/lib-base/*.js"
     }
   },
   "engines": {
