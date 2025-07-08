@@ -1,6 +1,7 @@
 {
   "name": "coinlibrary",
-  "version": "1.0.2",
+  "version": "1.0.3",
+  "type": "commonjs",
   "description": "\"# coinlibrary\"",
   "main": "./build-cjs/lib-base/index.js",
   "module": "./build-esm/lib-base/index.mjs",
@@ -9,9 +10,13 @@
       "import": "./build-esm/lib-base/index.mjs",
       "require": "./build-cjs/lib-base/index.js"
     },
-    "./lib-base/*": {
-      "import": "./build-esm/lib-base/*.mjs",
-      "require": "./build-cjs/lib-base/*.js"
+    "./lib-base": {
+      "import": "./build-esm/lib-base/index.mjs",
+      "require": "./build-cjs/lib-base/index.js"
+    },
+    "./*": {
+      "import": "./build-esm/*.mjs",
+      "require": "./build-cjs/*.js"
     }
   },
   "engines": {
@@ -25,7 +30,7 @@
   ],
   "scripts": {
     "build:cjs": "tsc --project tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json && find ./build-esm -name '*.js' -exec bash -c 'mv \"$0\" \"${0%.js}.mjs\"' {} +",
+    "build:esm": "tsc --project tsconfig.esm.json && find ./build-esm -name '*.js' -exec sh -c 'mv \"$1\" \"${1%.js}.mjs\"' _ {} \\;",
     "build": "npm run build:cjs && npm run build:esm",
     "builds": "tsc",
     "lint": "eslint --fix",
@@ -47,6 +52,11 @@
   },
   "homepage": "https://github.com/amirulnubitel/coinlib-port",
   "license": "ISC",
+  "files": [
+    "build-cjs/",
+    "build-esm/",
+    "README.md"
+  ],
   "dependencies": {
     "base-x": "^4.0.0",
     "bignumber.js": "^9.0.0",
